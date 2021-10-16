@@ -1,5 +1,7 @@
 @extends('backend.master')
-
+@section('dashboard')
+opened
+@endsection
 @section('content')
 <div class="page-content">
     <div class="container-fluid">

@@ -262,26 +262,21 @@
 	<div class="mobile-menu-left-overlay"></div>
 	<nav class="side-menu">
 	    <ul class="side-menu-list">
-	        <li class="gray with-sub">
+	        <li class="gray with-sub @yield('dashboard')">
 	            <a href="{{url('/dashboard')}}">
 	            <i class="font-icon font-icon-dashboard"></i>
                 <span class="lbl">Dashboard</span>
 	            </a>
 	        </li>
-	        <li class="brown with-sub">
+	        <li class="green with-sub @yield('category')">
 	            <span>
-	                <i class="font-icon glyphicon glyphicon-tint"></i>
-	                <span class="lbl">Skins</span>
+                    <i class="fa fa-list-alt" aria-hidden="true"></i>
+                    <span class="lbl">Category</span>
 	            </span>
 	            <ul>
-	                <li><a href="theme-side-ebony-clay.html"><span class="lbl">Ebony Clay</span></a></li>
-	                <li><a href="theme-side-madison-caribbean.html"><span class="lbl">Madison Caribbean</span></a></li>
-	                <li><a href="theme-side-caesium-dark-caribbean.html"><span class="lbl">Caesium Dark Caribbean</span></a></li>
-	                <li><a href="theme-side-tin.html"><span class="lbl">Tin</span></a></li>
-	                <li><a href="theme-side-litmus-blue.html"><span class="lbl">Litmus Blue</span></a></li>
-	                <li><a href="theme-rebecca-purple.html"><span class="lbl">Rebecca Purple</span></a></li>
-	                <li><a href="theme-picton-blue.html"><span class="lbl">Picton Blue</span></a></li>
-	                <li><a href="theme-picton-blue-white-ebony.html"><span class="lbl">Picton Blue White Ebony</span></a></li>
+	                <li><a href="{{route('category.index')}}"><span class="lbl">View Category</span></a></li>
+	                <li class=""><a href="{{route('category.create')}}"><span class="lbl">Create Category</span></a></li>
+	                <li><a href=""><span class="lbl">Trashed Category</span></a></li>
 	            </ul>
 	        </li>
 	        <li class="purple with-sub">

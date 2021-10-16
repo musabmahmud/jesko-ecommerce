@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -24,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.category.create');
     }
 
     /**
@@ -35,7 +35,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_name' => ['required','min:3','unique:categories'],
+        ]);
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->category_name)));
+        $category = new Category;
+        $category->category_name = $request->category_name;
+        $category->slug = $slug;
+        $category->save();
+
+        return back()->with('success','Data Inserted Successfully');
     }
 
     /**

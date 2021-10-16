@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,29 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('backend.dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+
+Route::resource('category', CategoryController::class);
+// Route::post('/cart-update',[CartController::class,'cartUpdate'])->name('cartUpdate');
+// Route::get('/cart-remove/{id}',[CartController::class,'cartDestroy'])->name('cartDestroy');
+// Route::post('/cart-coupon',[CartController::class,'couponGet'])->name('couponGet');
+// Route::get('/cart-destroy',[CartController::class,'couponDestroy'])->name('couponDestroy');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 require __DIR__.'/auth.php';
