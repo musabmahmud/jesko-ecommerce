@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="{{ asset('backend')}}/css/separate/vendor/lobipanel.min.css">
     <link rel="stylesheet" href="{{ asset('backend')}}/css/lib/jqueryui/jquery-ui.min.css">
     <link rel="stylesheet" href="{{ asset('backend')}}/css/separate/pages/widgets.min.css">
+    <link rel="stylesheet" href="{{ asset('backend')}}/css/lib/bootstrap-sweetalert/sweetalert.css">
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('backend')}}/css/lib/datatables-net/datatables.min.css">
     <link rel="stylesheet" href="{{ asset('backend')}}/css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('backend')}}/css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('backend')}}/css/main.css">
@@ -276,7 +279,7 @@
 	            <ul>
 	                <li><a href="{{route('category.index')}}"><span class="lbl">View Category</span></a></li>
 	                <li class=""><a href="{{route('category.create')}}"><span class="lbl">Create Category</span></a></li>
-	                <li><a href=""><span class="lbl">Trashed Category</span></a></li>
+	                <li><a href="{{route('categorytrashed')}}"><span class="lbl">Trashed Category</span></a></li>
 	            </ul>
 	        </li>
 	        <li class="purple with-sub">
@@ -671,11 +674,14 @@
 	<script src="{{ asset('backend')}}/js/lib/tether/tether.min.js"></script>
 	<script src="{{ asset('backend')}}/js/lib/bootstrap/bootstrap.min.js"></script>
 	<script src="{{ asset('backend')}}/js/plugins.js"></script>
-
+	<script src="{{ asset('backend')}}/js/lib/datatables-net/datatables.min.js"></script>
+	<script src="{{ asset('backend')}}/js/lib/bootstrap-sweetalert/sweetalert.min.js"></script>
+	<script src="{{ asset('js/app.js') }}" defer></script>
 	<script type="text/javascript" src="{{ asset('backend')}}/js/lib/jqueryui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="{{ asset('backend')}}/js/lib/lobipanel/lobipanel.min.js"></script>
 	<script type="text/javascript" src="{{ asset('backend')}}/js/lib/match-height/jquery.matchHeight.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	@yield('footer_js')
 	<script>
 		$(document).ready(function() {
             $('.panel').each(function () {
@@ -773,6 +779,9 @@
 				setTimeout(function(){
 				}, 1000);
 			});
+			$(document).ready( function () {
+				$('#myTable').DataTable();
+			} );
 		});
 	</script>
 <script src="{{ asset('backend')}}/js/app.js"></script>

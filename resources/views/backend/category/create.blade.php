@@ -36,7 +36,7 @@ opened
                         </p>
                         <p>
                             @error('category_name')
-                                <div class='alert alert-warning alert-dismissible'>{{$message}}<span class="text-danger">*</span></div>
+                                <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
                             @enderror
                         </p>
                     </div>

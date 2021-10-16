@@ -14,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        
+        return view('backend.category.index',[
+            'categories' => Category::paginate(15),
+        ]);
     }
 
     /**
@@ -55,7 +57,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return $category;
+        Category::onlyTrashed()->findOrFail($category->id)->restore();
+        return back()->with('success','Category Restored Successfully');
     }
 
     /**
@@ -66,7 +70,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('backend.category.edit',[
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -78,7 +84,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'category_name' => ['required','min:3','unique:categories'],
+        ]);
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->category_name)));
+ 
+        $category->category_name = $request->category_name;
+        $category->slug = $slug;
+        $category->save();
+
+        return back()->with('success','Data Inserted Successfully');
     }
 
     /**
@@ -89,6 +104,18 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return back()->with('success','Category Trashed Successfully');
+    }
+
+    public function categorytrashed(){
+        return view('backend.category.trashed',[
+            'categories' => Category::onlyTrashed()->paginate(15),
+        ]);
+    }
+
+    public function recovertrashed($id){
+        Category::onlyTrashed()->findOrFail($id)->restore();
+        return back()->with('success','Category Restored Successfully');
     }
 }

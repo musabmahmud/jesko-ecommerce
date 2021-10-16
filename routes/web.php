@@ -25,6 +25,8 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('category', CategoryController::class);
+Route::get('/category-trashed',[CategoryController::class,'categorytrashed'])->name('categorytrashed');
+Route::get('/category-recover/{id}',[CategoryController::class,'recovertrashed'])->name('recovertrashed');
 // Route::post('/cart-update',[CartController::class,'cartUpdate'])->name('cartUpdate');
 // Route::get('/cart-remove/{id}',[CartController::class,'cartDestroy'])->name('cartDestroy');
 // Route::post('/cart-coupon',[CartController::class,'couponGet'])->name('couponGet');
