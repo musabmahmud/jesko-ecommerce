@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('category')
+@section('brand')
     opened
 @endsection
 @section('content')
@@ -9,7 +9,7 @@
                 <div class="tbl">
                     <div class="tbl-row">
                         <div class="tbl-cell">
-                            <h3>Category</h3>
+                            <h3>brand</h3>
                             <ol class="breadcrumb breadcrumb-simple">
                                 <li class="active">Trashed</li>
                             </ol>
@@ -36,16 +36,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($categories as $key => $category)
+                                        @foreach ($brands as $key => $brand)
                                             <tr role="row">
-                                                <td>{{$categories->firstItem() + $key}}</td>
-                                                <td>{{$category->category_name}}</td>
-                                                <td><a href="{{ route('categoryrecovery',$category->id) }}" class="btn btn-secondary">Restore</a>
+                                                <td>{{$brands->firstItem() + $key}}</td>
+                                                <td>{{$brand->brand_name}}</td>
+                                                <td><a href="{{ route('brandrecovery',$brand->id) }}" class="btn btn-secondary">Restore</a>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $categories->links() }}
+                                {{ $brands->links() }}
                             </div>
                         </div>
                     </div>

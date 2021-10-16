@@ -114,7 +114,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function recovertrashed($id){
+    public function categoryrecovery($id){
         Category::onlyTrashed()->findOrFail($id)->restore();
         return back()->with('success','Category Restored Successfully');
     }
