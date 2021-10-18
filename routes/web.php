@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\TypeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +36,11 @@ Route::get('/brand-trashed',[BrandController::class,'brandtrashed'])->name('bran
 Route::get('/brand-recovery/{id}',[BrandController::class,'brandrecovery'])->name('brandrecovery');
 
 
-Route::resource('type', TypeController::class);
+Route::resource('product', ProductController::class);
+
+
+
+
 // Route::post('/cart-update',[CartController::class,'cartUpdate'])->name('cartUpdate');
 // Route::get('/cart-remove/{id}',[CartController::class,'cartDestroy'])->name('cartDestroy');
 // Route::post('/cart-coupon',[CartController::class,'couponGet'])->name('couponGet');

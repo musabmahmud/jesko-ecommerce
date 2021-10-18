@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('type')
+@section('brand')
     opened
 @endsection
 @section('content')
@@ -9,7 +9,7 @@
                 <div class="tbl">
                     <div class="tbl-row">
                         <div class="tbl-cell">
-                            <h3>type</h3>
+                            <h3>brand</h3>
                             <ol class="breadcrumb breadcrumb-simple">
                                 <li class="active">View</li>
                             </ol>
@@ -37,28 +37,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($types as $key => $type)
+                                        {{-- @foreach ($brands as $key => $brand)
                                             <tr role="row">
-                                                <td>{{ $types->firstItem() + $key }}</td>
-                                                <td>{{ $type->type_name }}</td>
-                                                <td><a href="{{ route('type.edit', $type->id) }}"
+                                                <td>{{ $brands->firstItem() + $key }}</td>
+                                                <td>{{ $brand->brand_name }}</td>
+                                                <td><a href="{{ route('brand.edit', $brand->id) }}"
                                                         class="btn btn-primary">Edit</a>
                                                 <td>
                                                     <form method="POST"
-                                                        action="{{ route('type.destroy', ['type' => $type->id]) }}">
+                                                        action="{{ route('brand.destroy', ['brand' => $brand->id]) }}">
                                                         @method('DELETE')
                                                         @csrf
-                                                        <input type="hidden" name="id" value="{{ $type->id }}">
+                                                        <input type="hidden" name="id" value="{{ $brand->id }}">
                                                         <button type="submit"
                                                             class="btn btn-xs btn-danger btn-flat show_confirm"
                                                             data-toggle="tooltip" title='Delete'>Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
-                                {{ $types->links() }}
+                                {{-- {{ $brands->links() }} --}}
                             </div>
                         </div>
                     </div>

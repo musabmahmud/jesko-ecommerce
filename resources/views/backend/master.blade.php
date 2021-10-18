@@ -293,17 +293,17 @@
 	                <li><a href="{{route('brandtrashed')}}"><span class="lbl">Trashed Brand</span></a></li>
 	            </ul>
 	        </li>
-			<li class="purple with-sub @yield('type')">
+	        <li class="green with-sub @yield('product')">
 	            <span>
-					<i class="font-icon font-icon-star"></i>
-                    <span class="lbl">Product Type</span>
+	                <i class="font-icon font-icon-widget"></i>
+	                <span class="lbl">Products</span>
 	            </span>
 	            <ul>
-	                <li><a href="{{route('type.index')}}"><span class="lbl">View Product Type</span></a></li>
-	                <li class=""><a href="{{route('type.create')}}"><span class="lbl">Create Product Type</span></a></li>
+	                <li><a href="{{route('product.index')}}"><span class="lbl">View Products</span></a></li>
+	                <li class=""><a href="{{route('product.create')}}"><span class="lbl">Create Products</span></a></li>
+	                {{-- <li><a href="{{route('producttrashed')}}"><span class="lbl">Trashed Brand</span></a></li> --}}
 	            </ul>
-	        </li>
-			
+			</li>
 	        <li class="purple with-sub">
 	            <span>
 	                <i class="font-icon font-icon-comments active"></i>

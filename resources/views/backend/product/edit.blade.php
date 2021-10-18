@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('type')
+@section('brand')
 opened
 @endsection
 @section('content')
@@ -9,7 +9,7 @@ opened
             <div class="tbl">
                 <div class="tbl-row">
                     <div class="tbl-cell">
-                        <h3>type</h3>
+                        <h3>brand</h3>
                         <ol class="breadcrumb breadcrumb-simple">
                             <li class="active">Edit</li>
                         </ol>
@@ -24,24 +24,24 @@ opened
                     {{ session('success') }}
                 </div>
             @endif
-            <form action="{{route('type.update',['type' => $type->id])}}" method="POST">
+            <form action="{{route('brand.update',['brand' => $brand->id])}}" method="POST">
                 {{method_field('PUT')}}
                 @csrf
                 <div class="form-group row">
                     <div class="col-md-2">
-                        <label class="form-control-label">type</label>
+                        <label class="form-control-label">brand</label>
                     </div>
                     <div class="col-md-10">
                         <p class="form-control-static">
-                            <input type="text" class="form-control" id="type_name" placeholder="Enter type Name" value="{{$type->type_name}}" name="type_name">
+                            <input type="text" class="form-control" id="brand_name" placeholder="Enter brand Name" value="{{$brand->brand_name}}" name="brand_name">
                         </p>
                         <p>
-                            @error('type_name')
+                            @error('brand_name')
                                 <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
                             @enderror
                         </p>
                     </div>
-                    <a href="{{route('type.index')}}" class="btn btn-inline btn-primary m-l">Back</a>
+                    <a href="{{route('brand.index')}}" class="btn btn-inline btn-primary m-l">Back</a>
                     <button type="submit" name="update" class="btn btn-inline btn-secondary text-center m-auto">Update</button>
                 </div>
             </form>
