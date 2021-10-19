@@ -30,7 +30,7 @@ opened
                     <div class="col-md-12">
                         <label class="form-control-label">Product Name *</label>
                         <p class="form-control-static">
-                            <input type="text" class="form-control @error('product_name') is invalid @enderror" id="product_name" placeholder="Enter Product Name" value="{{old('product_name')}}" name="product_name" required>
+                            <input type="text" class="form-control" id="product_name" placeholder="Enter Product Name" value="{{old('product_name')}}" name="product_name"  >
                         </p>
                         <p>
                             @error('product_name')
@@ -40,8 +40,8 @@ opened
                     </div>
                     <div class="col-md-6">
                         <label class="form-control-label">Category *</label>
-                        <select class="select2-arrow @error('category_id') is invalid @enderror" value="{{old('category_id')}}" name="category_id" required>
-                            <option value="">Choose Category</option>
+                        <select class="select2-arrow" value="{{old('category_id')}}" name="category_id"  >
+                            <option value="" selected>Choose Category</option>
                             @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->category_name}}</option>
                             @endforeach
@@ -54,8 +54,8 @@ opened
                     </div>
                     <div class="col-md-6">
                         <label class="form-control-label">Brand *</label>
-                        <select class="select2-arrow @error('brand_id') is invalid @enderror" value="{{old('brand_id')}}" name="brand_id" required>
-                            <option value="">Choose Brand</option>
+                        <select class="select2-arrow" value="{{old('brand_id')}}" name="brand_id"  >
+                            <option value="" selected>Choose Brand</option>
                             @foreach ($brands as $brand)
                                 <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
                             @endforeach
@@ -68,33 +68,24 @@ opened
                     </div>
                     <div class="col-md-6">
                         <label class="form-control-label">Type</label>
-                        <select class="select2-arrow @error('type_name') is invalid @enderror" value="{{old('type_name')}}" name="type_name">
-                            <option value="">Choose Type</option>
+                        <select class="select2-arrow" name="type_name">
+                            <option value="" selected>Choose Type</option>
                             <option value="men">Men</option>
                             <option value="women">Women</option>
                             <option value="kids">Kids</option>
+                            <option value="default">Default</option>
                         </select>
-                        <p>
-                            @error('type_name')
-                                <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
-                            @enderror
-                        </p>
                     </div>
                     <div class="col-md-6">
                         <label class="form-control-label">Product Weight</label>
                         <p class="form-control-static">
-                            <input type="number" min="0" class="form-control @error('description') is invalid @enderror" id="product_name" placeholder="Enter product Weight(g)" value="{{old('weight')}}" name="weight">
-                        </p>
-                        <p>
-                            @error('weight')
-                                <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
-                            @enderror
+                            <input type="number" min="0" class="form-control" id="product_name" placeholder="Enter product Weight(g)" value="{{old('weight')}}" name="weight">
                         </p>
                     </div>
                     <div class="col-md-6">
                         <label class="form-control-label">Thumbnail *</label>
                         <p class="form-control-static">
-                            <input type="file" class="form-control @error('thumbnail') is invalid @enderror" id="thumbnail" name="thumbnail" onchange="document.getElementById('image_id').src= window.URL.createObjectURL(this.files[0])">
+                            <input type="file" class="form-control" id="thumbnail" name="thumbnail" onchange="document.getElementById('image_id').src= window.URL.createObjectURL(this.files[0])">
                         </p>
                         <p>
                             @error('thumbnail')
@@ -108,7 +99,7 @@ opened
                     <div class="col-md-12">
                         <label class="form-control-label">Gallery * (select Multiple Image)</label>
                         <p class="form-control-static">
-                            <input type="file" multiple class="form-control @error('gallery') is invalid @enderror" id="gallery" name="gallery[]">
+                            <input type="file" multiple class="form-control" id="gallery" name="gallery[]">
                         </p>
                         <p>
                             @error('gallery')
@@ -120,9 +111,9 @@ opened
                         <div id="dynamic-field-1" class="form-group dynamic-field">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label class="form-control-label">Color *</label>
-                                    <select class="select2-arrow @error('color') is invalid @enderror" value="{{old('color')}}" name="color[]" required>
-                                        <option value="">Choose Color</option>
+                                    <label class="form-control-label" for="color">Color *</label>
+                                    <select class="select2-arrow" id="color" name="color[]">
+                                        <option value="" selected>Choose Color</option>
                                         <option value="red">Red</option>
                                         <option value="yellow">Yellow</option>
                                         <option value="green">Green</option>
@@ -141,9 +132,9 @@ opened
                                     </p>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="form-control-label">Size *</label>
-                                    <select class="select2-arrow @error('size') is invalid @enderror" value="{{old('size')}}" name="size[]" required>
-                                        <option value="">Choose Size</option>
+                                    <label class="form-control-label" for="size">Size *</label>
+                                    <select class="select2-arrow" id="size" name="size[]">
+                                        <option value="" selected>Choose Size</option>
                                         <option value="S">S</option>
                                         <option value="M">M</option>
                                         <option value="L">L</option>
@@ -158,9 +149,9 @@ opened
                                     </p>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="form-control-label">Quantity *</label>
+                                    <label class="form-control-label" for="quantity">Quantity *</label>
                                     <p class="form-control-static">
-                                        <input type="number" min="0" class="form-control @error('quantity') is invalid @enderror" id="quantity" placeholder="Quantity" value="{{old('quantity')}}" name="quantity[]" required>
+                                        <input type="number" min="0" class="form-control" id="quantity" placeholder="Quantity" value="{{old('quantity')}}" name="quantity[]"    >
                                     </p>
                                     <p>
                                         @error('quantity')
@@ -171,7 +162,7 @@ opened
                                 <div class="col-md-2">
                                     <label class="form-control-label">Price *</label>
                                     <p class="form-control-static">
-                                        <input type="number" min="0" class="form-control @error('price') is invalid @enderror" id="price" placeholder="Price" value="{{old('price')}}" name="price[]" required>
+                                        <input type="number" min="0" class="form-control" id="price" placeholder="Price" value="{{old('price')}}" name="price[]">
                                     </p>
                                     <p>
                                         @error('price')
@@ -182,12 +173,7 @@ opened
                                 <div class="col-md-2">
                                     <label class="form-control-label">Offer Price</label>
                                     <p class="form-control-static">
-                                        <input type="number" min="0" class="form-control @error('offer_price') is invalid @enderror" id="offer_price" placeholder="Offer Price" value="{{old('offer_price')}}" name="offer_price[]">
-                                    </p>
-                                    <p>
-                                        @error('offer_price')
-                                            <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
-                                        @enderror
+                                        <input type="number" min="0" class="form-control" id="offer_price" placeholder="Offer Price" value="{{old('offer_price')}}" name="offer_price[]">
                                     </p>
                                 </div>
                             </div>
@@ -204,29 +190,19 @@ opened
                     <div class="col-md-6">
                         <label class="form-control-label">Product Made Materials</label>
                         <p class="form-control-static">
-                            <input type="text" class="form-control @error('materials') is invalid @enderror" id="materials" placeholder="Enter Product Meterials" value="{{old('materials')}}" name="materials">
-                        </p>
-                        <p>
-                            @error('materials')
-                                <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
-                            @enderror
+                            <input type="text" class="form-control" id="materials" placeholder="Enter Product Meterials" value="{{old('materials')}}" name="materials">
                         </p>
                     </div>
                     <div class="col-md-6">
                         <label class="form-control-label">Product Short Information</label>
                         <p class="form-control-static">
-                            <input type="text" class="form-control @error('short_info') is invalid @enderror" id="short_info" placeholder="One Sentence Information" value="{{old('short_info')}}" name="short_info">
-                        </p>
-                        <p>
-                            @error('short_info')
-                                <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
-                            @enderror
+                            <input type="text" class="form-control" id="short_info" placeholder="One Sentence Information" value="{{old('short_info')}}" name="short_info">
                         </p>
                     </div>
                     <div class="col-md-6">
                         <label class="form-control-label">Summary *</label>
                         <p class="form-control-static">
-                            <textarea class="form-control @error('summary') is invalid @enderror"  name="summary" id="summary" placeholder="Enter Summary Shortly" cols="30" rows="10" required>{{old('summary')}}</textarea>
+                            <textarea class="form-control"  name="summary" id="summary" placeholder="Enter Summary Shortly" cols="30" rows="10"  >{{old('summary')}}</textarea>
                         </p>
                         <p>
                             @error('summary')
@@ -237,7 +213,7 @@ opened
                     <div class="col-md-6">
                         <label class="form-control-label">Description *</label>
                         <p class="form-control-static">
-                            <textarea class="form-control @error('description') is invalid @enderror"  name="description" id="description" placeholder="Enter Description Briefly" cols="30" rows="10" required>{{old('description')}}</textarea>
+                            <textarea class="form-control"  name="description" id="description" placeholder="Enter Description Briefly" cols="30" rows="10">{{old('description')}}</textarea>
                         </p>
                         <p>
                             @error('description')
@@ -266,7 +242,7 @@ opened
             var className = ".dynamic-field";
             var count = 0;
             var field = "";
-            var maxFields = 50;
+            var maxFields = 20;
 
             function totalFields() {
                 return $(className).length;

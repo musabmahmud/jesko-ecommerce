@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('brand')
+@section('product')
     opened
 @endsection
 @section('content')
@@ -9,9 +9,9 @@
                 <div class="tbl">
                     <div class="tbl-row">
                         <div class="tbl-cell">
-                            <h3>brand</h3>
+                            <h3>product</h3>
                             <ol class="breadcrumb breadcrumb-simple">
-                                <li class="active">Trashed</li>
+                                <li class="active">View</li>
                             </ol>
                         </div>
                     </div>
@@ -26,26 +26,48 @@
                         @endif
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="myTable" class="display table table-striped table-bordered dataTable"width="100%" role="grid" aria-describedby="example_info"
-                                    style="width: 100%;">
+                                <table id="myTable" class="display table table-striped table-responsive table-bordered dataTable"
+                                    width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
                                     <thead>
                                         <tr role="row">
-                                            <th>No</th>
-                                            <th>Name</th>
+                                            <th></th>
+                                            <th>Products Name</th>
+                                            <th>Cat</th>
+                                            <th>Brand</th>
+                                            <th>Type</th>
+                                            <th>Weight</th>
+                                            <th>Thumb</th>
+                                            <th>Materials</th>
+                                            <th>Short</th>
+                                            <th>Summary</th>
+                                            <th>Descrip</th>
+                                            <th>Created</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($brands as $key => $brand)
+                                        @foreach ($products as $key => $product)
                                             <tr role="row">
-                                                <td>{{$brands->firstItem() + $key}}</td>
-                                                <td>{{$brand->brand_name}}</td>
-                                                <td><a href="{{ route('brandrecovery',$brand->id) }}" class="btn btn-secondary">Restore</a>
+                                                <td>{{ $products->firstItem() + $key }}</td>
+                                                <td>{{ $product->product_name }}</td>
+                                                <td>{{ $product->category->category_name }}</td>
+                                                <td>{{ $product->brand->brand_name }}</td>
+                                                <td>{{ $product->type_name }}</td>
+                                                <td>{{ $product->weight }}g</td>
+                                                <td><img src="products/{{$product->thumbnail}}" height="100" width="100" alt="{{ $product->product_name }}"/></td>
+                                                <td>{{ $product->materials }}</td>
+                                                <td>{{ $product->short_info }}</td>
+                                                <td>{{ $product->summary }}</td>
+                                                <td>{{ $product->description }}</td>
+                                                <td>{{ $product->created_at->format('d-M-Y h:i:s a')}} ({{$product->created_at->diffForHumans()}})</td>
+                                                <td>
+                                                    <a href="{{ route('productrecovery',$product->id) }}" class="btn btn-secondary">Restore</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $brands->links() }}
+                                {{ $products->links() }}
                             </div>
                         </div>
                     </div>
@@ -60,4 +82,26 @@
         <!--.container-fluid-->
     </div>
     <!--.page-content-->
+@endsection
+
+@section('footer_js')
+    <script>
+        $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                    title: `Are you sure you want to delete this record?`,
+                    text: "If you delete this, it will be gone forever.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });
+    </script>
 @endsection

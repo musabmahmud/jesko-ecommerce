@@ -37,6 +37,8 @@ Route::get('/brand-recovery/{id}',[BrandController::class,'brandrecovery'])->nam
 
 
 Route::resource('product', ProductController::class);
+Route::get('/product-trashed',[ProductController::class,'producttrashed'])->name('producttrashed');
+Route::get('/product-recovery/{id}',[ProductController::class,'productrecovery'])->name('productrecovery');
 
 
 

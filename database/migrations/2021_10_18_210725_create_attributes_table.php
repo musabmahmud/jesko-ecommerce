@@ -20,7 +20,7 @@ class CreateAttributesTable extends Migration
             $table->string('size');
             $table->integer('quantity');
             $table->integer('price');
-            $table->integer('offer_price');
+            $table->integer('offer_price')->nullable();
             $table->timestamps();
         });
     }

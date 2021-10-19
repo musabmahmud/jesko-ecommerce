@@ -301,7 +301,7 @@
 	            <ul>
 	                <li><a href="{{route('product.index')}}"><span class="lbl">View Products</span></a></li>
 	                <li class=""><a href="{{route('product.create')}}"><span class="lbl">Create Products</span></a></li>
-	                {{-- <li><a href="{{route('producttrashed')}}"><span class="lbl">Trashed Brand</span></a></li> --}}
+	                <li><a href="{{route('producttrashed')}}"><span class="lbl">Trashed Brand</span></a></li>
 	            </ul>
 			</li>
 	        <li class="purple with-sub">
