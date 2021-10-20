@@ -58,8 +58,8 @@
                                                 <td><img src="products/{{$product->thumbnail}}" height="100" width="100" alt="{{ $product->product_name }}"/></td>
                                                 <td>{{ $product->materials }}</td>
                                                 <td>{{ $product->short_info }}</td>
-                                                <td>{{ $product->summary }}</td>
-                                                <td>{{ $product->description }}</td>
+                                                <td>{{Str::limit($product->summary, 50, $end='.......')}}</td>
+                                                <td>{{Str::limit($product->description, 50, $end='.......')}}</td>
                                                 <td>{{ $product->created_at->format('d-M-Y h:i:s a')}} ({{$product->created_at->diffForHumans()}})</td>
                                                 <td>
                                                     <a href="{{ route('attributeIndex', $product->id) }}"

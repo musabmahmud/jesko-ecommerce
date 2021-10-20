@@ -27,7 +27,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-
 Route::resource('category', CategoryController::class);
 Route::get('/category-trashed',[CategoryController::class,'categorytrashed'])->name('categorytrashed');
 Route::get('/category-recover/{id}',[CategoryController::class,'categoryrecovery'])->name('categoryrecovery');

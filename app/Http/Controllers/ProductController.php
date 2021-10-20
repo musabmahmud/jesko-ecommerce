@@ -43,35 +43,35 @@ class ProductController extends Controller
         $request->validate([
             'product_name' => ['required', 'min:3', 'unique:products'],
 
-            'category_id' => ['required'],
-            'brand_id' => ['required'],
-            'thumbnail' => ['required'],
+            // 'category_id' => ['required'],
+            // 'brand_id' => ['required'],
+            // 'thumbnail' => ['required'],
 
-            'type_name' => ['nullable'],
-            'weight' => ['nullable'],
-            'materials' => ['nullable'],
-            'short_info' => ['nullable'],
+            // 'type_name' => ['nullable'],
+            // 'weight' => ['nullable'],
+            // 'materials' => ['nullable'],
+            // 'short_info' => ['nullable'],
 
-            'summary' => ['required'],
-            'description' => ['required'],
+            // 'summary' => ['required'],
+            // 'description' => ['required'],
             
-            'gallery' => ['required'],
-            'gallery.*' => ['required'],
+            // 'gallery' => ['required'],
+            // 'gallery.*' => ['required'],
 
-            'color' => ['required'],
-            'color.*' => ['required'],
+            // 'color' => ['required'],
+            // 'color.*' => ['required'],
 
-            'size' => ['required'],
-            'size.*' => ['required'],
+            // 'size' => ['required'],
+            // 'size.*' => ['required'],
 
-            'quantity' => ['required'],
-            'quantity.*' => ['required'],
+            // 'quantity' => ['required'],
+            // 'quantity.*' => ['required'],
 
-            'price' => ['required'],
-            'price.*' => ['required'],
+            // 'price' => ['required'],
+            // 'price.*' => ['required'],
 
-            'offer_price' => ['nullable'],
-            'offer_price.*' => ['nullable'],
+            // 'offer_price' => ['nullable'],
+            // 'offer_price.*' => ['nullable'],
 
         ]);
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->product_name)));
@@ -100,8 +100,8 @@ class ProductController extends Controller
             $gallery = $request->file('gallery');
             foreach ($gallery as $key => $value) {
                 $gallery = new Gallery;
-                $extg = Str::random(10).'-'.date('Y-m').'.'.$gallery->getClientOriginalExtension();
-                Image::make($value)->save(public_path('galleries/'. $ext), 72);
+                $extg = Str::random(5) . '-' . $slug . '.' . $value->getClientOriginalExtension();
+                Image::make($value)->save(public_path('galleries/'. $extg), 72);
                 $gallery->gallery_name = $extg;
                 $gallery->product_id = $product->id;
                 $gallery->save();
@@ -129,6 +129,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $attrs = Attribute::where('product_id',$product->id)->latest()->paginate(10);
+        $galleries = Gallery::where('product_id',$product->id)->latest()->paginate(10);
+        return view('backend.product.show', compact('attrs','galleries','product'));
     }
 
     /**
