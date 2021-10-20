@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Route::get('/dashboard', function () {
@@ -49,12 +49,6 @@ Route::get('/product-attribute-create/{id}',[AttributeController::class,'attribu
 Route::resource('gallery', GalleryController::class);
 Route::get('/product-gallery-index/{id}',[GalleryController::class,'galleryIndex'])->name('galleryIndex');
 Route::get('/product-gallery-create/{id}',[GalleryController::class,'galleryCreate'])->name('galleryCreate');
-
-// Route::post('/cart-update',[CartController::class,'cartUpdate'])->name('cartUpdate');
-// Route::get('/cart-remove/{id}',[CartController::class,'cartDestroy'])->name('cartDestroy');
-// Route::post('/cart-coupon',[CartController::class,'couponGet'])->name('couponGet');
-// Route::get('/cart-destroy',[CartController::class,'couponDestroy'])->name('couponDestroy');
-
 
 
 

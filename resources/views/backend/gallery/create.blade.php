@@ -40,7 +40,7 @@ opened
                         </p>
                     </div>
                     <div class="col-md-6">
-                        <img src="{{asset('products/thumbnail.jpg')}}" alt="Product Image" height="100" width="100" id="image_id">
+                        <img src="{{asset('galleries/thumbnail.jpg')}}" alt="Product Image" height="100" width="100" id="image_id">
                     </div>
                 </div>
                 <a href="{{route('galleryIndex',$id)}}" class="btn btn-primary m-l">Back</a>

@@ -54,8 +54,8 @@ class GalleryController extends Controller
         if ($request->hasFile('gallery_name')) {
             $gallery = new Gallery;
             $image = $request->file('gallery_name');
-            $ext = Str::random(25) . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('products/'. $ext), 72);
+            $ext = Str::random(10).'-'.date('Y-m').'.'. $image->getClientOriginalExtension();
+            Image::make($image)->save(public_path('galleries/'. $ext), 72);
             $gallery->gallery_name = $ext;
             $gallery->product_id = $request->product_id;
             $gallery->save();
@@ -92,7 +92,7 @@ class GalleryController extends Controller
      * @param  \App\Models\gallery  $gallery
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, gallery $gallery)
+    public function update(Request $request, Gallery $gallery)
     {
         $request->validate([
             'gallery_name' => ['required'],
@@ -100,8 +100,12 @@ class GalleryController extends Controller
 
         if ($request->hasFile('gallery_name')) {
             $image = $request->file('gallery_name');
-            $ext = Str::random(25) . $image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('products/'. $ext), 72);
+            $image_path = "galleries/".$gallery->gallery_name; 
+            if (file_exists($image_path)) {
+                @unlink($image_path);
+            }
+            $ext = Str::random(10).'-'.date('Y-m').'.'. $image->getClientOriginalExtension();
+            Image::make($image)->save(public_path('galleries/'. $ext), 72);
             $gallery->gallery_name = $ext;
             $gallery->save();
             return back()->with('success', 'Gallery Image Successfully Inserted.');

@@ -42,7 +42,7 @@
                                             <tr>
                                                 <td>{{ $galleries->firstItem() + $key }}</td>
                                                 <td>{{ $product->product_name}}</td>
-                                                <td><img src="{{asset('products')}}/{{$gallery->gallery_name}}" height="100" width="100" alt="{{ $product->product_name }}"/></td>
+                                                <td><img src="{{asset('galleries')}}/{{$gallery->gallery_name}}" height="100" width="100" alt="{{ $product->product_name }}"/></td>
                                                 <td><a href="{{ route('gallery.edit', $gallery->id) }}" class="btn btn-warning m-b-md">Edit</a>
                                                 <form method="POST"
                                                     action="{{ route('gallery.destroy', ['gallery' => $gallery->id]) }}">
