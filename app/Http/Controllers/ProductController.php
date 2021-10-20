@@ -101,7 +101,7 @@ class ProductController extends Controller
             foreach ($gallery as $key => $value) {
                 $gallery = new Gallery;
                 $extg = Str::random(5) . '-' . $slug . '.' . $value->getClientOriginalExtension();
-                Image::make($value)->save(public_path('products/'. $extg), 72);
+                Image::make($value)->save(public_path('../products/'. $extg), 72);
                 $gallery->gallery_name = $extg;
                 $gallery->product_id = $product->id;
                 $gallery->save();
@@ -129,7 +129,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
     }
 
     /**
@@ -217,4 +216,8 @@ class ProductController extends Controller
         Product::onlyTrashed()->findOrFail($id)->restore();
         return back()->with('success','Product Restored Successfully');
     }
+
+
+
+
 }

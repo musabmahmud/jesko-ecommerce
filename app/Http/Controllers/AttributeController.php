@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attribute;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AttributeController extends Controller
@@ -14,7 +15,13 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        //
+    }
+
+    public function attributeIndex($id)
+    {
+        $attrs = Attribute::where('product_id',$id)->latest()->paginate(10);
+        $product = Product::findOrFail($id);
+        return view('backend.attribute.index', compact('attrs','product'));
     }
 
     /**
@@ -22,9 +29,13 @@ class AttributeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(){
+
+    }
+
+    public function attributeCreate($id)
     {
-        //
+        return view('backend.attribute.create',compact('id'));
     }
 
     /**
@@ -34,8 +45,24 @@ class AttributeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {       
+        $request->validate([
+            'color' => ['required'],
+            'size' => ['required'],
+            'quantity' => ['required'],
+            'price' => ['required'],
+            'offer_price' => ['nullable']
+        ]);
+
+        $attr = new Attribute;
+        $attr->product_id = $request->product_id;
+        $attr->color = $request->color;
+        $attr->size = $request->size;
+        $attr->quantity = $request->quantity;
+        $attr->price = $request->price;
+        $attr->offer_price = $request->offer_price;
+        $attr->save();
+        return back()->with('success', 'Data Successfully Inserted.');
     }
 
     /**
@@ -44,9 +71,8 @@ class AttributeController extends Controller
      * @param  \App\Models\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function show(Attribute $attribute)
-    {
-        //
+    public function show(Request $request)
+    {  
     }
 
     /**
@@ -80,6 +106,7 @@ class AttributeController extends Controller
      */
     public function destroy(Attribute $attribute)
     {
-        //
+        $attribute->delete();
+        return back()->with('success','Attribute Delete Successfully');
     }
 }

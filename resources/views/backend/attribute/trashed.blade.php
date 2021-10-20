@@ -42,7 +42,6 @@
                                             <th>Summary</th>
                                             <th>Descrip</th>
                                             <th>Created</th>
-                                            <th>Attribute & Gallery</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -62,20 +61,7 @@
                                                 <td>{{ $product->description }}</td>
                                                 <td>{{ $product->created_at->format('d-M-Y h:i:s a')}} ({{$product->created_at->diffForHumans()}})</td>
                                                 <td>
-                                                    <a href="{{ route('attributeIndex', $product->id) }}"
-                                                    class="btn btn-primary">View Attribute</a>
-                                                </td>
-
-                                                <td><a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning m-b-md">Edit</a>
-                                                <form method="POST"
-                                                    action="{{ route('product.destroy', ['product' => $product->id]) }}">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <input type="hidden" name="id" value="{{ $product->id }}">
-                                                    <button type="submit"
-                                                        class="btn btn-xs btn-danger btn-flat show_confirm"
-                                                        data-toggle="tooltip" title='Delete'>Delete</button>
-                                                </form>
+                                                    <a href="{{ route('productrecovery',$product->id) }}" class="btn btn-secondary">Restore</a>
                                                 </td>
                                             </tr>
                                         @endforeach

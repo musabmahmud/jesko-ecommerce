@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,7 +42,11 @@ Route::resource('product', ProductController::class);
 Route::get('/product-trashed',[ProductController::class,'producttrashed'])->name('producttrashed');
 Route::get('/product-recovery/{id}',[ProductController::class,'productrecovery'])->name('productrecovery');
 
+Route::resource('attribute', AttributeController::class);
+Route::get('/product-attribute-index/{id}',[AttributeController::class,'attributeIndex'])->name('attributeIndex');
+Route::get('/product-attribute-create/{id}',[AttributeController::class,'attributeCreate'])->name('attributeCreate');
 
+Route::resource('gallery', GalleryController::class);
 
 
 // Route::post('/cart-update',[CartController::class,'cartUpdate'])->name('cartUpdate');
