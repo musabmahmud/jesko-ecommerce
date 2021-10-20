@@ -47,7 +47,8 @@ Route::get('/product-attribute-index/{id}',[AttributeController::class,'attribut
 Route::get('/product-attribute-create/{id}',[AttributeController::class,'attributeCreate'])->name('attributeCreate');
 
 Route::resource('gallery', GalleryController::class);
-
+Route::get('/product-gallery-index/{id}',[GalleryController::class,'galleryIndex'])->name('galleryIndex');
+Route::get('/product-gallery-create/{id}',[GalleryController::class,'galleryCreate'])->name('galleryCreate');
 
 // Route::post('/cart-update',[CartController::class,'cartUpdate'])->name('cartUpdate');
 // Route::get('/cart-remove/{id}',[CartController::class,'cartDestroy'])->name('cartDestroy');

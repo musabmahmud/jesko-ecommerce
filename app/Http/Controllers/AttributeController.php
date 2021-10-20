@@ -83,7 +83,8 @@ class AttributeController extends Controller
      */
     public function edit(Attribute $attribute)
     {
-        //
+        $id =$attribute->product_id;
+        return view('backend.attribute.edit',compact('attribute','id'));
     }
 
     /**
@@ -95,7 +96,21 @@ class AttributeController extends Controller
      */
     public function update(Request $request, Attribute $attribute)
     {
-        //
+        $request->validate([
+            'color' => ['required'],
+            'size' => ['required'],
+            'quantity' => ['required'],
+            'price' => ['required'],
+            'offer_price' => ['nullable']
+        ]);
+
+        $attribute->color = $request->color;
+        $attribute->size = $request->size;
+        $attribute->quantity = $request->quantity;
+        $attribute->price = $request->price;
+        $attribute->offer_price = $request->offer_price;
+        $attribute->save();
+        return back()->with('success', 'Data Updated Successfully.');
     }
 
     /**

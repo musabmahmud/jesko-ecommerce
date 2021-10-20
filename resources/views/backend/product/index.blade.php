@@ -42,7 +42,7 @@
                                             <th>Summary</th>
                                             <th>Descrip</th>
                                             <th>Created</th>
-                                            <th>Attribute & Gallery</th>
+                                            <th>View</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -63,9 +63,10 @@
                                                 <td>{{ $product->created_at->format('d-M-Y h:i:s a')}} ({{$product->created_at->diffForHumans()}})</td>
                                                 <td>
                                                     <a href="{{ route('attributeIndex', $product->id) }}"
-                                                    class="btn btn-primary">View Attribute</a>
+                                                    class="btn btn-primary m-b">Attribute</a>
+                                                    <a href="{{ route('galleryIndex', $product->id) }}"
+                                                        class="btn btn-primary">Gallery</a>
                                                 </td>
-
                                                 <td><a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning m-b-md">Edit</a>
                                                 <form method="POST"
                                                     action="{{ route('product.destroy', ['product' => $product->id]) }}">
