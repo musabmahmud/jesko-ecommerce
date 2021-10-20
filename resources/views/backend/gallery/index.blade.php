@@ -11,6 +11,7 @@
                         <div class="tbl-cell">
                             <h3>product</h3>
                             <ol class="breadcrumb breadcrumb-simple">
+                                <li>galleries</li>
                                 <li class="active">View</li>
                             </ol>
                         </div>
@@ -26,48 +27,25 @@
                         @endif
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="myTable" class="display table table-striped table-responsive table-bordered dataTable"
-                                    width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+                                <a href="{{route('galleryCreate',$product->id)}}" class="btn btn-inline btn-success m-b">Added New</a>
+                                <table id="myTable" class="table table-striped table-responsive table-bordered dataTable" style="width: 100%">
                                     <thead>
                                         <tr role="row">
-                                            <th></th>
+                                            <th>No</th>
                                             <th>Products Name</th>
-                                            <th>Cat</th>
-                                            <th>Brand</th>
-                                            <th>Type</th>
-                                            <th>Weight</th>
-                                            <th>Thumb</th>
-                                            <th>Materials</th>
-                                            <th>Short</th>
-                                            <th>Summary</th>
-                                            <th>Descrip</th>
-                                            <th>Created</th>
-                                            <th>Attribute & Gallery</th>
+                                            <th>Gallery Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($products as $key => $product)
-                                            <tr role="row">
-                                                <td>{{ $products->firstItem() + $key }}</td>
-                                                <td>{{ $product->product_name }}</td>
-                                                <td>{{ $product->category->category_name }}</td>
-                                                <td>{{ $product->brand->brand_name }}</td>
-                                                <td>{{ $product->type_name }}</td>
-                                                <td>{{ $product->weight }}g</td>
-                                                <td><img src="products/{{$product->thumbnail}}" height="100" width="100" alt="{{ $product->product_name }}"/></td>
-                                                <td>{{ $product->materials }}</td>
-                                                <td>{{ $product->short_info }}</td>
-                                                <td>{{ $product->summary }}</td>
-                                                <td>{{ $product->description }}</td>
-                                                <td>{{ $product->created_at->format('d-M-Y h:i:s a')}} ({{$product->created_at->diffForHumans()}})</td>
-                                                <td>
-                                                    <a href="{{ route('product.show', $product->id) }}"
-                                                    class="btn btn-primary">View</a>
-                                                </td>
-                                                <td><a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning m-b-md">Edit</a>
+                                        @foreach ($galleries as $key => $gallery)
+                                            <tr>
+                                                <td>{{ $galleries->firstItem() + $key }}</td>
+                                                <td>{{ $product->product_name}}</td>
+                                                <td><img src="{{asset('products')}}/{{$gallery->gallery_name}}" height="100" width="100" alt="{{ $product->product_name }}"/></td>
+                                                <td><a href="{{ route('gallery.edit', $gallery->id) }}" class="btn btn-warning m-b-md">Edit</a>
                                                 <form method="POST"
-                                                    action="{{ route('product.destroy', ['product' => $product->id]) }}">
+                                                    action="{{ route('gallery.destroy', ['gallery' => $gallery->id]) }}">
                                                     @method('DELETE')
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $product->id }}">
@@ -80,8 +58,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $products->links() }}
+                                {{ $galleries->links() }}
                             </div>
+                            <a href="{{route('product.index')}}" class="btn btn-primary m-l">Back</a>
                         </div>
                     </div>
                 </section>
