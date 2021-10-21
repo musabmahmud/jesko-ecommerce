@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -18,14 +19,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+Route::get('/',[FrontEndController::class,'home'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('backend.dashboard');
 })->middleware(['auth'])->name('dashboard');
-
 
 Route::resource('category', CategoryController::class);
 Route::get('/category-trashed',[CategoryController::class,'categorytrashed'])->name('categorytrashed');
