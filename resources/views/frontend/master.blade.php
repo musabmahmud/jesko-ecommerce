@@ -14,7 +14,6 @@
     <!-- Add site Favicon -->
     <link rel="shortcut icon" href="{{ asset('frontend')}}/images/favicon/favicon.ico" type="image/png">
 
-
     <!-- vendor css (Icon Font) -->
     <!-- <link rel="stylesheet" href="{{asset('frontend')}}/css/vendor/bootstrap.bundle.min.css" />
     <link rel="stylesheet" href="{{asset('frontend')}}/css/vendor/pe-icon-7-stroke.css" />
@@ -29,7 +28,9 @@
 
     <!-- Use the minified version files listed below for better performance and remove the files listed above -->
     <link rel="stylesheet" href="{{asset('frontend')}}/css/vendor/vendor.min.css" />
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="{{asset('frontend')}}/css/plugins/plugins.min.css" />
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="{{asset('frontend')}}/css/style.min.css" />
 
     <!-- Main Style -->
@@ -245,7 +246,7 @@
             </div>
             <div class="foot">
                 <div class="buttons mt-30px">
-                    <a href="cart.html" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
+                    <a href="{{route('cart.index')}}" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
                     <a href="checkout.html" class="btn btn-outline-dark current-btn">checkout</a>
                 </div>
             </div>
@@ -717,7 +718,7 @@
     <!-- Use the minified version files listed below for better performance and remove the files listed above -->
     <script src="{{asset('frontend')}}/js/vendor/vendor.min.js"></script>
     <script src="{{asset('frontend')}}/js/plugins/plugins.min.js"></script>
-
+    <script src="{{asset('frontend')}}/js/bootstrap/bootstrap.js"></script>
     <!-- Main Js -->
     <script src="{{asset('frontend')}}/js/main.js"></script>
 </body>

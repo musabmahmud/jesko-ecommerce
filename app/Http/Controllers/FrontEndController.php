@@ -25,9 +25,9 @@ class FrontEndController extends Controller
     }
     public function productDetails($slug){
         $pdtDetail =Product::where('product_slug',$slug)->first();
-        // $attributes = Attribute::where('product_id', 5)->get();
-        // $attributes = collect($attribute)->merge('color')->all();
-        return view('frontend.pages.single_product', compact('pdtDetail'));
+        $attributes = Attribute::where('product_id', $pdtDetail->id)->get();
+        $groups = collect($attributes)->groupBy('color_id');
+        return view('frontend.pages.single_product', compact('pdtDetail','groups'));
     }
 
     public function getSize($colorId,$productId){

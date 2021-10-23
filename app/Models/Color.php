@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Color extends Model
 {
     use HasFactory;
-    // function cart(){
-    //     return $this->hasMany(Cart::class,'product_id');
-    // }
+    function cart(){
+        return $this->hasMany(Cart::class,'color_id');
+    }
 }

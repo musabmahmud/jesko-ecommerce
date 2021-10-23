@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FrontEndController;
@@ -26,6 +27,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[FrontEndController::class,'home'])->name('home');
 Route::get('/products/{slug}',[FrontEndController::class,'productDetails'])->name('productDetails');
 Route::get('/get/color/size/{color}/{productId}',[FrontEndController::class,'getSize'])->name('getSize');
+
+Route::resource('cart', CartController::class);
+
+
 
 Route::get('/dashboard', function () {
     return view('backend.dashboard');

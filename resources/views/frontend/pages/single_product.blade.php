@@ -57,14 +57,23 @@
                 </div>
                 <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-details-content quickview-content">
+                        @if(session('success'))
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ session('success') }}
+                        </div>
+                        @elseif (session('error'))
+                            <div class="alert bg-color">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <h2>{{ $pdtDetail->product_name }}</h2>
                         <div class="pricing-meta">
                             <span class="price"></span>
                             <span class="offer_price">
                                 @if (collect($pdtDetail->attribute)->min('offer_price') < collect($pdtDetail->attribute)->min('price'))
-                                    <span
-                                        class="new">${{ collect($pdtDetail->attribute)->min('offer_price') }}</span><span
-                                        class="old">${{ collect($pdtDetail->attribute)->min('price') }}</span>
+                                    <s>${{ collect($pdtDetail->attribute)->min('price') }}</s> ${{ collect($pdtDetail->attribute)->min('offer_price') }}
                                 @else
                                     {{ collect($pdtDetail->attribute)->min('price') }}
                                 @endif
@@ -80,41 +89,55 @@
                             </div>
                             <span class="read-review"><a class="reviews" href="#">( 5 Customer Review )</a></span>
                         </div>
+                        <form action="{{route('cart.store')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $pdtDetail->id }}"/>
+                            
                         <div class="pro-details-color-info d-flex align-items-center">
                             <span>Color</span>
                             <div class="pro-details-color product-color">
                                 <ul>
-                                    @foreach ($pdtDetail->attribute as $attribute)
-                                        <li>
-                                            <input type="radio" value="{{ $attribute->color_id }}"
-                                                data-product="{{ $pdtDetail->id }}" id="cid{{ $attribute->id }}"
-                                                name="color_id" class="color_id">
-                                            <label
-                                                for="cid{{ $attribute->id }}">{{ $attribute->color->color_name }}</label>
-                                            {{-- <a href="{{ url('get/color/size/'. $attribute->color . '/' .$pdtDetail->id)}}">click</a> --}}
-                                        </li>
-                                        {{-- <li><a class="{{$attribute->color}}" href="#productDetails"></a></li> --}}
+                                    @foreach ($groups as $group)
+                                    <li><input type="radio" value="{{ $group[0]->color_id }}"
+                                        data-product="{{ $pdtDetail->id }}" id="cid{{ $group[0]->id }}" name="color_id" class="color_id">
+                                        <label for="cid{{ $group[0]->id }}">{{ $group[0]->color->color_name }}</label>
+                                    </li>
                                     @endforeach
                                 </ul>
                             </div>
                         </div>
+                        
+                        @error('color_id')
+                        <div class="alert bg-color">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ $message }} *
+                        </div>
+                        @enderror
                         <!-- Sidebar single item -->
                         <div class="pro-details-size-info d-flex align-items-center">
                             <span>Size</span>
-                            <div class="pro-details-size">
-                                <div class="product-size"></div>
-                                {{-- <ul>
-                                    <li><a class="active-size gray" href="#productDetails">S</a></li>
-                                </ul> --}}
+                            <div class="pro-details-size product-size">
                             </div>
                         </div>
+                        @error('size')
+                                    <div class="alert bg-color">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        {{ $message }} *
+                                    </div>
+                                @enderror
                         <p class="m-0">{{ $pdtDetail->summary }}</p>
+                        @error('quantity')
+                            <div class="alert bg-color">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ $message }} *
+                            </div>
+                        @enderror
                         <div class="pro-details-quality">
                             <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
+                                <input class="cart-plus-minus-box" type="text" name="quantity" value="1"/>
                             </div>
                             <div class="pro-details-cart">
-                                <button class="add-cart" href="#"> Add To
+                                <button class="add-cart" type="submit" name="submit"> Add To
                                     Cart</button>
                             </div>
                             <div class="pro-details-compare-wishlist pro-details-wishlist ">
@@ -124,6 +147,7 @@
                                 <a href="compare.html"><i class="pe-7s-refresh-2"></i></a>
                             </div>
                         </div>
+                        </form>
                         <div class="pro-details-sku-info pro-details-same-style  d-flex">
                             <span>Brands: </span>
                             <ul class="d-flex">
@@ -596,7 +620,6 @@
                 url: "{{ url('get/color/size') }}/" + colorId + '/' + productId,
                 success: function(res) {
                     if (res) {
-                        $('.offer_price').empty();
                         $('.product-size').html(res);
                         $('.sizecheck').change(function() {
                             var price = $(this).attr('data-price');
@@ -604,8 +627,7 @@
                             var offer = $(this).attr('data-offerprice');
                             if (price > offer) {
                                 $('.offer_price').empty();
-                                $('.price').html('$' + price);
-                                $('.offer_price').html('$' + offer);
+                                $('.price').html('<s>$' + price +'</s> $' + offer);
                             } else {
                                 $('.price').html('$' + price);
                             }
