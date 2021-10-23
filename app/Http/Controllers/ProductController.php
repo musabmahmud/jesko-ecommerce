@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Gallery;
 use App\Models\Attribute;
+use App\Models\Color;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use App\Models\Product;
@@ -35,7 +36,8 @@ class ProductController extends Controller
     {
         $categories = Category::orderBy('category_name', 'Asc')->get();
         $brands = Brand::orderBy('brand_name', 'Asc')->get();
-        return view('backend.product.create', compact('categories','brands'));
+        $colors = Color::orderBy('color_name', 'Asc')->get();
+        return view('backend.product.create', compact('categories','brands','colors'));
     }
 
     public function store(Request $request)
@@ -108,10 +110,10 @@ class ProductController extends Controller
             }
         }
         // //attribute Inserted
-        foreach ($request->color as $key => $color) {
+        foreach ($request->color_id as $key => $color_id) {
             $attr = new Attribute;
             $attr->product_id = $product->id;
-            $attr->color = $color;
+            $attr->color_id = $color_id;
             $attr->size = $request->size[$key];
             $attr->quantity = $request->quantity[$key];
             $attr->price = $request->price[$key];

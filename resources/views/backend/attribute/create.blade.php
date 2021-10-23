@@ -29,10 +29,13 @@ opened
                 <input type="hidden" name="product_id" value="{{$id}}"/>
                 <div class="row">
                     <div class="col-md-6">
-                        <label class="form-control-label" for="color">Color *</label>
-                        <select class="select2-arrow" id="color" name="color">
+                        <label class="form-control-label" for="color_id">Color *</label>
+                        <select class="select2-arrow" id="color_id" name="color_id">
                             <option value="" selected>Choose Color</option>
-                            <option value="red">Red</option>
+                            @foreach ($colors as $color)
+                                <option value="{{$color->id}}">{{$color->color_name}}</option>
+                            @endforeach
+                            {{-- <option value="red">Red</option>
                             <option value="yellow">Yellow</option>
                             <option value="green">Green</option>
                             <option value="blue">Blue</option>
@@ -41,10 +44,10 @@ opened
                             <option value="pink">Pink</option>
                             <option value="white">White</option>
                             <option value="purple">Purple</option>
-                            <option value="gray">Gray</option>
+                            <option value="gray">Gray</option> --}}
                         </select>
                         <p>
-                            @error('color')
+                            @error('color_id')
                                 <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
                             @enderror
                         </p>

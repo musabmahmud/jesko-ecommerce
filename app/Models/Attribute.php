@@ -11,4 +11,7 @@ class Attribute extends Model
     function product(){
         return $this->belongsTo(Product::class,'product_id');
     }
+    function color(){
+        return $this->belongsTo(Color::class,'color_id');
+    }
 }

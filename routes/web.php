@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProductController;
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('frontend.index');
 // });
 Route::get('/',[FrontEndController::class,'home'])->name('home');
+Route::get('/products/{slug}',[FrontEndController::class,'productDetails'])->name('productDetails');
+Route::get('/get/color/size/{color}/{productId}',[FrontEndController::class,'getSize'])->name('getSize');
 
 Route::get('/dashboard', function () {
     return view('backend.dashboard');
@@ -36,6 +39,8 @@ Route::get('/category-recover/{id}',[CategoryController::class,'categoryrecovery
 Route::resource('brand', BrandController::class);
 Route::get('/brand-trashed',[BrandController::class,'brandtrashed'])->name('brandtrashed');
 Route::get('/brand-recovery/{id}',[BrandController::class,'brandrecovery'])->name('brandrecovery');
+
+Route::resource('color', ColorController::class);
 
 
 Route::resource('product', ProductController::class);

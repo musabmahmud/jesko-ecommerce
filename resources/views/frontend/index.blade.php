@@ -154,7 +154,7 @@
                                     <!-- Single Prodect -->
                                     <div class="product">
                                         <div class="thumb">
-                                            <a href="single-product.html" class="image">
+                                            <a href="{{route('productDetails',$allProduct->product_slug)}}" class="image">
                                                 <img src="{{ asset('products')}}/{{$allProduct->thumbnail}}" height="300" alt="{{$allProduct->product_name}}" />
                                             </a>
                                             <span class="badges">

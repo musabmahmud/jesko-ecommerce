@@ -36,7 +36,6 @@
     /*-------------------------------
         Create an toggle
     ---------------------------------*/
-
     $('.color a').on('click', function () {
         $('.sidebar-widget-list a').removeClass('active');
         $(this).addClass('active');
@@ -48,19 +47,6 @@
     });
 
 
-    /*-------------------------------
-        Create an toggle
-    ---------------------------------*/
-
-    $('.pro-details-color a').on('click', function () {
-        $('.pro-details-color a').removeClass('active-color');
-        $(this).addClass('active-color');
-    });
-
-    $('.pro-details-size a').on('click', function () {
-        $('.pro-details-size a').removeClass('active-size');
-        $(this).addClass('active-size');
-    });
 
 
 

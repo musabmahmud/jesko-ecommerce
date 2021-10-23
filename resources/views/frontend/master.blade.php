@@ -16,24 +16,24 @@
 
 
     <!-- vendor css (Icon Font) -->
-    <!-- <link rel="stylesheet" href="{{ asset('frontend')}}/css/vendor/bootstrap.bundle.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend')}}/css/vendor/pe-icon-7-stroke.css" />
-    <link rel="stylesheet" href="{{ asset('frontend')}}/css/vendor/font.awesome.css" /> -->
+    <!-- <link rel="stylesheet" href="{{asset('frontend')}}/css/vendor/bootstrap.bundle.min.css" />
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/vendor/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/vendor/font.awesome.css" /> -->
 
     <!-- plugins css (All Plugins Files) -->
-    <!-- <link rel="stylesheet" href="{{ asset('frontend')}}/css/plugins/animate.css" />
-    <link rel="stylesheet" href="{{ asset('frontend')}}/css/plugins/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend')}}/css/plugins/jquery-ui.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend')}}/css/plugins/nice-select.css" />
-    <link rel="stylesheet" href="{{ asset('frontend')}}/css/plugins/venobox.css" /> -->
+    <!-- <link rel="stylesheet" href="{{asset('frontend')}}/css/plugins/animate.css" />
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/plugins/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/plugins/jquery-ui.min.css" />
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/plugins/nice-select.css" />
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/plugins/venobox.css" /> -->
 
     <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-    <link rel="stylesheet" href="{{ asset('frontend')}}/css/vendor/vendor.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend')}}/css/plugins/plugins.min.css" />
-    <link rel="stylesheet" href="{{ asset('frontend')}}/css/style.min.css">
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/vendor/vendor.min.css" />
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/plugins/plugins.min.css" />
+    <link rel="stylesheet" href="{{asset('frontend')}}/css/style.min.css" />
 
     <!-- Main Style -->
-    <!-- <link rel="stylesheet" href="{{ asset('frontend')}}/css/style.css" /> -->
+    <!-- <link rel="stylesheet" href="{{asset('frontend')}}/css/style.css" /> -->
 
 </head>
 
@@ -694,27 +694,32 @@
     <!-- Global Vendor, plugins JS -->
 
     <!-- Vendor JS -->
-    <!-- <script src="{{ asset('frontend')}}/js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('frontend')}}/js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('frontend')}}/js/vendor/jquery-migrate-3.3.2.min.js"></script>
-    <script src="{{ asset('frontend')}}/js/vendor/modernizr-3.11.2.min.js"></script> -->
+    <!-- Vendor JS -->
+    <!-- <script src="{{asset('frontend')}}/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="{{asset('frontend')}}/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('frontend')}}/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="{{asset('frontend')}}/js/vendor/modernizr-3.11.2.min.js"></script> -->
 
     <!--Plugins JS-->
-    <!-- <script src="{{ asset('frontend')}}/js/plugins/swiper-bundle.min.js"></script>
-    <script src="{{ asset('frontend')}}/js/plugins/jquery-ui.min.js"></script>
-    <script src="{{ asset('frontend')}}/js/plugins/jquery.nice-select.min.js"></script>
-    <script src="{{ asset('frontend')}}/js/plugins/countdown.js"></script>
-    <script src="{{ asset('frontend')}}/js/plugins/scrollup.js"></script>
-    <script src="{{ asset('frontend')}}/js/plugins/jquery.zoom.min.js"></script>
-    <script src="{{ asset('frontend')}}/js/plugins/venobox.min.js"></script>
-    <script src="{{ asset('frontend')}}/js/plugins/ajax-mail.js"></script> -->
+    <!-- <script src="{{asset('frontend')}}/js/plugins/swiper-bundle.min.js"></script>
+    <script src="{{asset('frontend')}}/js/plugins/jquery-ui.min.js"></script>
+    <script src="{{asset('frontend')}}/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="{{asset('frontend')}}/js/plugins/countdown.js"></script>
+    <script src="{{asset('frontend')}}/js/plugins/scrollup.js"></script>
+    <script src="{{asset('frontend')}}/js/plugins/jquery.zoom.min.js"></script>
+    <script src="{{asset('frontend')}}/js/plugins/venobox.min.js"></script>
+    <script src="{{asset('frontend')}}/js/plugins/ajax-mail.js"></script> -->
+
+    
+
+    @yield('footer_js')
 
     <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-    <script src="{{ asset('frontend')}}/js/vendor/vendor.min.js"></script>
-    <script src="{{ asset('frontend')}}/js/plugins/plugins.min.js"></script>
+    <script src="{{asset('frontend')}}/js/vendor/vendor.min.js"></script>
+    <script src="{{asset('frontend')}}/js/plugins/plugins.min.js"></script>
 
     <!-- Main Js -->
-    <script src="{{ asset('frontend')}}/js/main.js"></script>
+    <script src="{{asset('frontend')}}/js/main.js"></script>
 </body>
 
 

@@ -304,6 +304,17 @@
 	                <li><a href="{{route('producttrashed')}}"><span class="lbl">Trashed Brand</span></a></li>
 	            </ul>
 			</li>
+			
+	        <li class="purple with-sub @yield('color')">
+	            <span>
+                    <i class="fa fa-renren"></i>
+                    <span class="lbl">Color</span>
+	            </span>
+	            <ul>
+	                <li><a href="{{route('color.index')}}"><span class="lbl">View Color</span></a></li>
+	                <li class=""><a href="{{route('color.create')}}"><span class="lbl">Create Color</span></a></li>
+	            </ul>
+	        </li>
 	        <li class="purple with-sub">
 	            <span>
 	                <i class="font-icon font-icon-comments active"></i>

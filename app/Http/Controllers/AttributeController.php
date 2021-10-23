@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attribute;
+use App\Models\Color;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,8 @@ class AttributeController extends Controller
 
     public function attributeCreate($id)
     {
-        return view('backend.attribute.create',compact('id'));
+        $colors = Color::orderBy('color_name', 'Asc')->get();
+        return view('backend.attribute.create',compact('id','colors'));
     }
 
     /**
@@ -47,7 +49,7 @@ class AttributeController extends Controller
     public function store(Request $request)
     {       
         $request->validate([
-            'color' => ['required'],
+            'color_id' => ['required'],
             'size' => ['required'],
             'quantity' => ['required'],
             'price' => ['required'],
@@ -56,7 +58,7 @@ class AttributeController extends Controller
 
         $attr = new Attribute;
         $attr->product_id = $request->product_id;
-        $attr->color = $request->color;
+        $attr->color_id = $request->color_id;
         $attr->size = $request->size;
         $attr->quantity = $request->quantity;
         $attr->price = $request->price;
@@ -83,8 +85,9 @@ class AttributeController extends Controller
      */
     public function edit(Attribute $attribute)
     {
-        $id =$attribute->product_id;
-        return view('backend.attribute.edit',compact('attribute','id'));
+        $id =   $attribute->product_id;
+        $colors = Color::orderBy('color_name', 'Asc')->get();
+        return view('backend.attribute.edit',compact('attribute','id','colors'));
     }
 
     /**
@@ -97,14 +100,14 @@ class AttributeController extends Controller
     public function update(Request $request, Attribute $attribute)
     {
         $request->validate([
-            'color' => ['required'],
+            'color_id' => ['required'],
             'size' => ['required'],
             'quantity' => ['required'],
             'price' => ['required'],
             'offer_price' => ['nullable']
         ]);
 
-        $attribute->color = $request->color;
+        $attribute->color_id = $request->color_id;
         $attribute->size = $request->size;
         $attribute->quantity = $request->quantity;
         $attribute->price = $request->price;
