@@ -271,6 +271,17 @@
                 <span class="lbl">Dashboard</span>
 	            </a>
 	        </li>
+			<li class="green with-sub @yield('product')">
+	            <span>
+	                <i class="font-icon font-icon-widget"></i>
+	                <span class="lbl">Products</span>
+	            </span>
+	            <ul>
+	                <li><a href="{{route('product.index')}}"><span class="lbl">View Products</span></a></li>
+	                <li class=""><a href="{{route('product.create')}}"><span class="lbl">Create Products</span></a></li>
+	                <li><a href="{{route('producttrashed')}}"><span class="lbl">Trashed Brand</span></a></li>
+	            </ul>
+			</li>
 	        <li class="green with-sub @yield('category')">
 	            <span>
                     <i class="fa fa-list-alt" aria-hidden="true"></i>
@@ -293,18 +304,6 @@
 	                <li><a href="{{route('brandtrashed')}}"><span class="lbl">Trashed Brand</span></a></li>
 	            </ul>
 	        </li>
-	        <li class="green with-sub @yield('product')">
-	            <span>
-	                <i class="font-icon font-icon-widget"></i>
-	                <span class="lbl">Products</span>
-	            </span>
-	            <ul>
-	                <li><a href="{{route('product.index')}}"><span class="lbl">View Products</span></a></li>
-	                <li class=""><a href="{{route('product.create')}}"><span class="lbl">Create Products</span></a></li>
-	                <li><a href="{{route('producttrashed')}}"><span class="lbl">Trashed Brand</span></a></li>
-	            </ul>
-			</li>
-			
 	        <li class="purple with-sub @yield('color')">
 	            <span>
                     <i class="fa fa-renren"></i>
@@ -313,6 +312,16 @@
 	            <ul>
 	                <li><a href="{{route('color.index')}}"><span class="lbl">View Color</span></a></li>
 	                <li class=""><a href="{{route('color.create')}}"><span class="lbl">Create Color</span></a></li>
+	            </ul>
+	        </li>
+			<li class="blue-dirty with-sub @yield('coupon')">
+	            <span>
+	                <i class="font-icon font-icon-edit"></i>
+                    <span class="lbl">Coupon</span>
+	            </span>
+	            <ul>
+	                <li><a href="{{route('coupon.index')}}"><span class="lbl">View Coupon</span></a></li>
+	                <li class=""><a href="{{route('coupon.create')}}"><span class="lbl">Create Coupon</span></a></li>
 	            </ul>
 	        </li>
 	        <li class="purple with-sub">

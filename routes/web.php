@@ -5,6 +5,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProductController;
@@ -27,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[FrontEndController::class,'home'])->name('home');
 Route::get('/products/{slug}',[FrontEndController::class,'productDetails'])->name('productDetails');
 Route::get('/get/color/size/{color}/{productId}',[FrontEndController::class,'getSize'])->name('getSize');
+Route::get('/cart/empty',[CartController::class,'clearCart'])->name('clearCart');
+Route::post('/cart/coupon/',[CartController::class,'getCoupon'])->name('getCoupon');
 
 Route::resource('cart', CartController::class);
 
@@ -46,6 +49,8 @@ Route::get('/brand-trashed',[BrandController::class,'brandtrashed'])->name('bran
 Route::get('/brand-recovery/{id}',[BrandController::class,'brandrecovery'])->name('brandrecovery');
 
 Route::resource('color', ColorController::class);
+
+Route::resource('coupon', CouponController::class);
 
 
 Route::resource('product', ProductController::class);

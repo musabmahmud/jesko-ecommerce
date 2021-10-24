@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,7 +18,9 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.cart');
+        $cookie = Cookie::get('jesko_id');
+        $carts = Cart::Where('cookie_id', $cookie)->get();
+        return view('frontend.pages.cart',compact('carts'));
     }
 
     /**
@@ -94,7 +97,9 @@ class CartController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
-        //
+        $cart->quantity = $request->quantity;
+        $cart->save();
+        return redirect('cart'.'#cartDetails')->with('success','Updated Product into THE Cart');
     }
 
     /**
@@ -105,6 +110,28 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        //
+        $cart = Cart::findOrFail($cart->id)->delete();
+        return redirect('cart'.'#cartDetails')->with('success','Product Deleted From Cart');
+    }
+
+    public function clearCart(){
+        Cart::truncate();
+        return redirect('cart'.'#cartDetails')->with('success','Cart Empty');
+    }
+
+    function getCoupon(Request $request){
+        $request->validate([
+            'coupon_name' => ['required'],
+        ]);
+        $coupon = Coupon::Where('coupon_name', $request->coupon_name)->Where('coupon_validity', '>' , date('Y-m-d'))->first();
+        if($coupon){
+            $cookie = Cookie::get('jesko_id');
+            $carts =  Cart::Where('cookie_id', $cookie)->get();
+        }
+        else{
+            return redirect('cart/#coupon')->with('error','Please Enter A Valid Coupon');
+        }
+        
+        return view('frontend.pages.cart', compact('carts','coupon'));
     }
 }

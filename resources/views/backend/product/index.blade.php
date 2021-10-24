@@ -60,7 +60,7 @@
                                                 <td>{{ $product->short_info }}</td>
                                                 <td>{{Str::limit($product->summary, 50, $end='.......')}}</td>
                                                 <td>{{Str::limit($product->description, 50, $end='.......')}}</td>
-                                                <td>{{ $product->created_at->format('d-M-Y h:i:s a')}} ({{$product->created_at->diffForHumans()}})</td>
+                                                <td>{{ $product->created_at->format('d-M-Y h:i a')}} ({{$product->created_at->diffForHumans()}})</td>
                                                 <td>
                                                     <a href="{{ route('attributeIndex', $product->id) }}"
                                                     class="btn btn-primary m-b">Attribute</a>
