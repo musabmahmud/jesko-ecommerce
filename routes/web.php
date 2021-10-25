@@ -4,6 +4,7 @@ use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FrontEndController;
@@ -30,9 +31,8 @@ Route::get('/products/{slug}',[FrontEndController::class,'productDetails'])->nam
 Route::get('/get/color/size/{color}/{productId}',[FrontEndController::class,'getSize'])->name('getSize');
 Route::get('/cart/empty',[CartController::class,'clearCart'])->name('clearCart');
 Route::post('/cart/coupon/',[CartController::class,'getCoupon'])->name('getCoupon');
-
 Route::resource('cart', CartController::class);
-
+Route::resource('checkout', CheckoutController::class);
 
 
 Route::get('/dashboard', function () {

@@ -46,11 +46,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php use App\Models\Attribute; 
+                                    @php
                                         $subtotal = 0;
                                         $total = 0;
-                                    ?>
-                                    @forelse ($carts as $cartItem)
+                                        $discount = 0;
+                                        $coupon = session('coupon');
+                                    @endphp
+                                    @forelse (getCarts() as $cartItem)
                                     <tr>
                                         <td class="product-thumbnail">
                                             <a href="#"><img class="img-responsive ml-15px"
@@ -59,7 +61,7 @@
                                         <td class="product-name"><a href="#">{{$cartItem->product->product_name}}</a></td>
                                         <td class="product-price-cart"><span class="amount text-uppercase">{{$cartItem->color->color_name}}</span></td>
                                         <td class="product-price-cart"><span class="amount">{{$cartItem->size}}</span></td>
-                                        <td class="product-price-cart"><span class="amount">${{$price = Attribute::where('product_id',$cartItem->product_id)->where('color_id',$cartItem->color_id)->where('size',$cartItem->size)->first()->offer_price;}}</span></td>
+                                        <td class="product-price-cart"><span class="amount">${{getPrice($cartItem)}}</span></td>
                                             <td class="product-quantity">
                                             <form action="{{route('cart.update',['cart' => $cartItem->id])}}" method="POST">
                                             {{method_field('PUT')}}
@@ -69,7 +71,7 @@
                                                     value="{{$cartItem->quantity}}" />
                                             </div>
                                         </td>
-                                        <td class="product-subtotal">${{$price * $cartItem->quantity}}</td>
+                                        <td class="product-subtotal">${{getPrice($cartItem) * $cartItem->quantity}}</td>
                                         <td class="product-remove">
                                             <button type="submit">
                                                 <i class="fa fa-pencil"></i>
@@ -83,7 +85,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    <?php $subtotal = $subtotal + $price * $cartItem->quantity;?>
+                                    <?php $subtotal = $subtotal + getPrice($cartItem) * $cartItem->quantity;?>
                                     @empty
                                     <tr>
                                         <td class="text-center" colspan="30">No Data Available</td>
@@ -147,16 +149,21 @@
                                     <h5>Total products <span>${{$subtotal}}</span></h5>
                                     <h5>Shipping Cost<span>${{$shipping = 3}}</span></h5>
                                     @isset($coupon)
-                                        <h5>Coupon Offer {{$coupon->coupon_percentage}}%<span>- ${{$offer = $coupon->coupon_percentage * $subtotal/100}}</span></h5>
+                                        <h5>Discount {{$coupon->coupon_percentage}}%<span>- ${{$discount = $coupon->coupon_percentage * $subtotal/100}}</span></h5>
                                     @endisset
                                     <hr>
                                     @if(isset($coupon))
-                                        <h4 class="grand-totall-title">Grand Total <span>${{$total = $subtotal + $shipping - $offer}}</span></h4>
+                                        <h4 class="grand-totall-title">Grand Total <span>${{$total = $subtotal + $shipping - $discount}}</span></h4>
                                     @else
                                         <h4 class="grand-totall-title">Grand Total <span>${{$total = $subtotal + $shipping}}</span></h4>
                                     @endif
-                                    <a href="checkout.html">Proceed to Checkout</a>
+                                    <a href="{{route('checkout.index')}}">Proceed to Checkout</a>
                                 </div>
+                                @php
+                                    session()->put('subtotal',$subtotal);
+                                    session()->put('discount',$discount);
+                                    session()->put('grand_total',$total);
+                                @endphp
                             </div>
                         </div>
                     </div>

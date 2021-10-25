@@ -18,9 +18,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cookie = Cookie::get('jesko_id');
-        $carts = Cart::Where('cookie_id', $cookie)->get();
-        return view('frontend.pages.cart',compact('carts'));
+        return view('frontend.pages.cart');
     }
 
     /**
@@ -125,13 +123,11 @@ class CartController extends Controller
         ]);
         $coupon = Coupon::Where('coupon_name', $request->coupon_name)->Where('coupon_validity', '>' , date('Y-m-d'))->first();
         if($coupon){
-            $cookie = Cookie::get('jesko_id');
-            $carts =  Cart::Where('cookie_id', $cookie)->get();
+            session()->put('coupon',$coupon);
+            return redirect('cart/#coupon')->with('success','Coupon Applied Successfully');
         }
         else{
             return redirect('cart/#coupon')->with('error','Please Enter A Valid Coupon');
         }
-        
-        return view('frontend.pages.cart', compact('carts','coupon'));
     }
 }

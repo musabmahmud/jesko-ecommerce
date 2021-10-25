@@ -1,3 +1,6 @@
+<?php use App\Models\Attribute;
+ use App\Models\Cart; 
+use Illuminate\Support\Facades\Cookie;?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -144,8 +147,7 @@
                             <a href="#offcanvas-cart"
                                 class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                                 <i class="pe-7s-shopbag"></i>
-                                <span class="header-action-num">01</span>
-                                <!-- <span class="cart-amount">€30.00</span> -->
+                                <span class="header-action-num">{{getCartCount()}}</span>
                             </a>
                             <a href="#offcanvas-mobile-menu"
                                 class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
@@ -215,39 +217,28 @@
             </div>
             <div class="body customScroll">
                 <ul class="minicart-product-list">
+                    @foreach (getCarts() as $cartPro)
                     <li>
-                        <a href="single-product.html" class="image"><img src="{{ asset('frontend')}}/images/product-image/1.jpg"
-                                alt="Cart product Image"></a>
+                        <a href="{{$cartPro->product->product_slug}}" class="image"><img src="{{ asset('products')}}/{{$cartPro->product->thumbnail}}"
+                                alt="{{$cartPro->product->product_name}}"></a>
                         <div class="content">
-                            <a href="single-product.html" class="title">Women's Elizabeth Coat</a>
-                            <span class="quantity-price">1 x <span class="amount">$18.86</span></span>
-                            <a href="#" class="remove">×</a>
+                            <a href="single-product.html" class="title">{{$cartPro->product->product_name}}</a>
+                            <span class="quantity-price">{{$cartPro->quantity}} * <span class="amount">${{getPrice($cartPro)}}</span>
+                            <form method="POST"
+                                action="{{ route('cart.destroy', ['cart' => $cartPro->id]) }}">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="remove">×</button>
+                            </form>
                         </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="{{ asset('frontend')}}/images/product-image/2.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Long sleeve knee length</a>
-                            <span class="quantity-price">1 x <span class="amount">$43.28</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="single-product.html" class="image"><img src="{{ asset('frontend')}}/images/product-image/3.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="single-product.html" class="title">Cool Man Wearing Leather</a>
-                            <span class="quantity-price">1 x <span class="amount">$37.34</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
+                    </li>  
+                    @endforeach
+                    
                 </ul>
             </div>
             <div class="foot">
                 <div class="buttons mt-30px">
                     <a href="{{route('cart.index')}}" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
-                    <a href="checkout.html" class="btn btn-outline-dark current-btn">checkout</a>
                 </div>
             </div>
         </div>
