@@ -324,7 +324,7 @@
 	                <li class=""><a href="{{route('coupon.create')}}"><span class="lbl">Create Coupon</span></a></li>
 	            </ul>
 	        </li>
-			<li class="magenta with-sub @yield('coupon')">
+			<li class="magenta with-sub @yield('role')">
 	            <span>
 	                <span class="glyphicon glyphicon-list-alt"></span>
                     <span class="lbl">Role</span>

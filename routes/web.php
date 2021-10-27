@@ -29,6 +29,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[FrontEndController::class,'home'])->name('home');
 Route::get('/products/{slug}',[FrontEndController::class,'productDetails'])->name('productDetails');
 Route::get('/get/color/size/{color}/{productId}',[FrontEndController::class,'getSize'])->name('getSize');
+Route::get('/customer-login',[FrontEndController::class,'customerLogin'])->name('customerLogin');
+Route::get('/customer-register',[FrontEndController::class,'customerRegister'])->name('customerRegister');
+Route::get('/my-account',[FrontEndController::class,'myAccount'])->name('myAccount');
+
 Route::get('/cart/empty',[CartController::class,'clearCart'])->name('clearCart');
 Route::post('/cart/coupon/',[CartController::class,'getCoupon'])->name('getCoupon');
 Route::resource('cart', CartController::class);

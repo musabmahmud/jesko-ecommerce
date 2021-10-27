@@ -40,4 +40,14 @@ class FrontEndController extends Controller
         return $output;
         return response()->json($output);
     }
+    public function customerLogin(){
+        return view('frontend.pages.login');
+    }
+    public function customerRegister(){
+        return view('frontend.pages.register');
+    }
+    public function myAccount(){
+        return view('frontend.pages.my_account');
+    }
+
 }

@@ -126,14 +126,32 @@ use Illuminate\Support\Facades\Cookie;?>
                                 </li>
                                 <li><a href="about.html">About us</a></li>
                                 <li><a href="contact.html">Contact us</a></li>
+                                <li class="dropdown "><a>My Account <i class="pe-7s-angle-down"></i></a>
+                                    <ul class="sub-menu">
+                                        @auth
+                                            <li><a href="{{route('myAccount')}}">My Account</a></li>
+                                            <li><a href="" class="nav-link" onclick="event.preventDefault(); document.getElementById('form-logout').submit();">
+                                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                                <p>
+                                                    Logout
+                                                </p>
+                                                </a>
+                                                <form id="form-logout" action="{{ route('logout') }}" method="post">
+                                                @csrf
+                                                </form>
+                                            </li>
+                                            @else
+                                            <li><a href="{{route('customerLogin')}}">Login Page</a></li>
+                                            <li><a href="{{route('customerRegister')}}">Register Page</a></li>
+                                        @endauth
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <!-- Header Action Start -->
                     <div class="col col-lg-auto align-self-center pl-0">
                         <div class="header-actions">
-                            <a href="login.html" class="header-action-btn login-btn" data-bs-toggle="modal"
-                                data-bs-target="#loginActive">Sign In</a>
                             <!-- Single Wedge Start -->
                             <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
                                 <i class="pe-7s-search"></i>
@@ -253,11 +271,8 @@ use Illuminate\Support\Facades\Cookie;?>
 
             <div class="offcanvas-menu mb-4">
                 <ul>
-                    <li><a href="#"><span class="menu-text">Home</span></a>
-                        <ul class="sub-menu">
-                            <li><a href="index.html"><span class="menu-text">Home 1</span></a></li>
-                            <li><a href="index-2.html"><span class="menu-text">Home 2</span></a></li>
-                        </ul>
+                    <li>
+                        <a href="#"><span class="menu-text">Home</span></a>
                     </li>
                     <li><a href="#"><span class="menu-text">Shop</span></a>
                         <ul class="sub-menu">
@@ -329,8 +344,19 @@ use Illuminate\Support\Facades\Cookie;?>
                             <li><a href="blog-single-right-sidebar.html">Single Right Sidbar</a>
                         </ul>
                     </li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#"><span class="menu-text">Auth</span></a>
+                        <ul class="sub-menu">
+                            <li><a href="cart.html">Cart Page</a></li>
+                            <li><a href="checkout.html">Checkout Page</a></li>
+                            <li><a href="compare.html">Compare Page</a></li>
+                            <li><a href="wishlist.html">Wishlist Page</a></li>
+                            <li><a href="my-account.html">Account Page</a></li>
+                            <li><a href="login.html">Login & Register Page</a></li>
+                            <li><a href="empty-cart.html">Empty Cart Page</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
             <!-- OffCanvas Menu End -->
