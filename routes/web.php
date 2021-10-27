@@ -10,6 +10,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 // Route::get('/', function () {
 //     return view('frontend.index');
 // });
@@ -34,7 +34,6 @@ Route::post('/cart/coupon/',[CartController::class,'getCoupon'])->name('getCoupo
 Route::resource('cart', CartController::class);
 Route::resource('checkout', CheckoutController::class);
 
-
 Route::get('/dashboard', function () {
     return view('backend.dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -43,7 +42,6 @@ Route::resource('category', CategoryController::class);
 Route::get('/category-trashed',[CategoryController::class,'categorytrashed'])->name('categorytrashed');
 Route::get('/category-recover/{id}',[CategoryController::class,'categoryrecovery'])->name('categoryrecovery');
 
-
 Route::resource('brand', BrandController::class);
 Route::get('/brand-trashed',[BrandController::class,'brandtrashed'])->name('brandtrashed');
 Route::get('/brand-recovery/{id}',[BrandController::class,'brandrecovery'])->name('brandrecovery');
@@ -51,6 +49,13 @@ Route::get('/brand-recovery/{id}',[BrandController::class,'brandrecovery'])->nam
 Route::resource('color', ColorController::class);
 
 Route::resource('coupon', CouponController::class);
+
+Route::resource('role', RoleController::class);
+Route::get('/role-view',[RoleController::class,'viewRole'])->name('viewRole');
+Route::get('/role-assign',[RoleController::class,'assignUser'])->name('assignUser');
+Route::post('/role-assign-store',[RoleController::class,'assignUserStore'])->name('assignUserStore');
+
+
 
 
 Route::resource('product', ProductController::class);
@@ -64,20 +69,5 @@ Route::get('/product-attribute-create/{id}',[AttributeController::class,'attribu
 Route::resource('gallery', GalleryController::class);
 Route::get('/product-gallery-index/{id}',[GalleryController::class,'galleryIndex'])->name('galleryIndex');
 Route::get('/product-gallery-create/{id}',[GalleryController::class,'galleryCreate'])->name('galleryCreate');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 require __DIR__.'/auth.php';

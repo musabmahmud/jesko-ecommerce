@@ -324,6 +324,18 @@
 	                <li class=""><a href="{{route('coupon.create')}}"><span class="lbl">Create Coupon</span></a></li>
 	            </ul>
 	        </li>
+			<li class="magenta with-sub @yield('coupon')">
+	            <span>
+	                <span class="glyphicon glyphicon-list-alt"></span>
+                    <span class="lbl">Role</span>
+	            </span>
+	            <ul>
+	                <li><a href="{{route('role.index')}}"><span class="lbl">View Users</span></a></li>
+	                <li class=""><a href="{{route('role.create')}}"><span class="lbl">Create Role</span></a></li>
+					<li class=""><a href="{{route('assignUser')}}"><span class="lbl">Assign Role</span></a></li>
+	            	<li class=""><a href="{{route('viewRole')}}"><span class="lbl">View Role</span></a></li>
+				</ul>
+	        </li>
 	        <li class="purple with-sub">
 	            <span>
 	                <i class="font-icon font-icon-comments active"></i>
