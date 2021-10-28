@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('backend')}}/css/lib/jqueryui/jquery-ui.min.css">
     <link rel="stylesheet" href="{{ asset('backend')}}/css/separate/pages/widgets.min.css">
     <link rel="stylesheet" href="{{ asset('backend')}}/css/lib/bootstrap-sweetalert/sweetalert.css">
+	<link rel="stylesheet" href="{{ asset('backend')}}/css/separate/vendor/select2.min.css">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('backend')}}/css/lib/datatables-net/datatables.min.css">
     <link rel="stylesheet" href="{{ asset('backend')}}/css/lib/font-awesome/font-awesome.min.css">
@@ -277,9 +278,9 @@
 	                <span class="lbl">Products</span>
 	            </span>
 	            <ul>
-	                <li><a href="{{route('product.index')}}"><span class="lbl">View Products</span></a></li>
-	                <li class=""><a href="{{route('product.create')}}"><span class="lbl">Create Products</span></a></li>
-	                <li><a href="{{route('producttrashed')}}"><span class="lbl">Trashed Brand</span></a></li>
+	                @can('product view')<li><a href="{{route('product.index')}}"><span class="lbl">View Products</span></a></li>@endcan
+	                @can('product create')<li class=""><a href="{{route('product.create')}}"><span class="lbl">Create Products</span></a></li>@endcan
+	                @can('product trash')<li><a href="{{route('producttrashed')}}"><span class="lbl">Trashed Brand</span></a></li>@endcan
 	            </ul>
 			</li>
 	        <li class="green with-sub @yield('category')">
@@ -288,9 +289,9 @@
                     <span class="lbl">Category</span>
 	            </span>
 	            <ul>
-	                <li><a href="{{route('category.index')}}"><span class="lbl">View Category</span></a></li>
-	                <li class=""><a href="{{route('category.create')}}"><span class="lbl">Create Category</span></a></li>
-	                <li><a href="{{route('categorytrashed')}}"><span class="lbl">Trashed Category</span></a></li>
+	                @can('category view')<li><a href="{{route('category.index')}}"><span class="lbl">View Category</span></a></li>@endcan
+	                @can('category create')<li class=""><a href="{{route('category.create')}}"><span class="lbl">Create Category</span></a></li>@endcan
+	                @can('category trash')<li><a href="{{route('categorytrashed')}}"><span class="lbl">Trashed Category</span></a></li>@endcan
 	            </ul>
 	        </li>
 	        <li class="gold with-sub @yield('brand')">
@@ -299,9 +300,9 @@
                     <span class="lbl">Brand</span>
 	            </span>
 	            <ul>
-	                <li><a href="{{route('brand.index')}}"><span class="lbl">View Brand</span></a></li>
-	                <li class=""><a href="{{route('brand.create')}}"><span class="lbl">Create Brand</span></a></li>
-	                <li><a href="{{route('brandtrashed')}}"><span class="lbl">Trashed Brand</span></a></li>
+	               @can('brand view')<li><a href="{{route('brand.index')}}"><span class="lbl">View Brand</span></a></li>@endcan
+				   @can('brand create')<li class=""><a href="{{route('brand.create')}}"><span class="lbl">Create Brand</span></a></li>@endcan
+				   @can('brand trash')<li><a href="{{route('brandtrashed')}}"><span class="lbl">Trashed Brand</span></a></li>@endcan
 	            </ul>
 	        </li>
 	        <li class="purple with-sub @yield('color')">
@@ -310,8 +311,8 @@
                     <span class="lbl">Color</span>
 	            </span>
 	            <ul>
-	                <li><a href="{{route('color.index')}}"><span class="lbl">View Color</span></a></li>
-	                <li class=""><a href="{{route('color.create')}}"><span class="lbl">Create Color</span></a></li>
+	                @can('color view')<li><a href="{{route('color.index')}}"><span class="lbl">View Color</span></a></li>@endcan
+	                @can('color create')<li class=""><a href="{{route('color.create')}}"><span class="lbl">Create Color</span></a></li>@endcan
 	            </ul>
 	        </li>
 			<li class="blue-dirty with-sub @yield('coupon')">
@@ -320,22 +321,24 @@
                     <span class="lbl">Coupon</span>
 	            </span>
 	            <ul>
-	                <li><a href="{{route('coupon.index')}}"><span class="lbl">View Coupon</span></a></li>
-	                <li class=""><a href="{{route('coupon.create')}}"><span class="lbl">Create Coupon</span></a></li>
+	                @can('color view')<li><a href="{{route('coupon.index')}}"><span class="lbl">View Coupon</span></a></li>@endcan
+	                @can('color create')<li class=""><a href="{{route('coupon.create')}}"><span class="lbl">Create Coupon</span></a></li>@endcan
 	            </ul>
 	        </li>
+			@can('assign user')
 			<li class="magenta with-sub @yield('role')">
 	            <span>
 	                <span class="glyphicon glyphicon-list-alt"></span>
                     <span class="lbl">Role</span>
 	            </span>
 	            <ul>
+					<li class=""><a href="{{route('assignUser')}}"><span class="lbl">Assign Role</span></a></li>
 	                <li><a href="{{route('role.index')}}"><span class="lbl">View Users</span></a></li>
 	                <li class=""><a href="{{route('role.create')}}"><span class="lbl">Create Role</span></a></li>
-					<li class=""><a href="{{route('assignUser')}}"><span class="lbl">Assign Role</span></a></li>
 	            	<li class=""><a href="{{route('viewRole')}}"><span class="lbl">View Role</span></a></li>
 				</ul>
 	        </li>
+			@endcan
 	        <li class="purple with-sub">
 	            <span>
 	                <i class="font-icon font-icon-comments active"></i>
@@ -730,6 +733,7 @@
 	<script src="{{ asset('backend')}}/js/plugins.js"></script>
 	<script src="{{ asset('backend')}}/js/lib/datatables-net/datatables.min.js"></script>
 	<script src="{{ asset('backend')}}/js/lib/bootstrap-sweetalert/sweetalert.min.js"></script>
+	<script src="{{ asset('backend')}}/js/lib/select2/select2.full.min.js"></script>
 	<script src="{{ asset('js/app.js') }}" defer></script>
 	<script type="text/javascript" src="{{ asset('backend')}}/js/lib/jqueryui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="{{ asset('backend')}}/js/lib/lobipanel/lobipanel.min.js"></script>

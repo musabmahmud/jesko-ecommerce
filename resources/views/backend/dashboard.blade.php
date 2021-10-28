@@ -6,6 +6,13 @@ opened
 <div class="page-content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-block m-t">
+                        <h3 class="text-uppercase">{{auth()->user()->name}} ({{auth()->user()->roles->first()->name}})</h3>
+                    </div>
+                </div>
+            </div>
             <div class="col-xl-6">
                 <div class="chart-statistic-box">
                     <div class="chart-txt">

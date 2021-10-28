@@ -47,7 +47,12 @@ class FrontEndController extends Controller
         return view('frontend.pages.register');
     }
     public function myAccount(){
-        return view('frontend.pages.my_account');
+        if(auth()->user()){
+            return view('frontend.pages.my_account');
+        }
+        else{
+            return redirect('customer-login');
+        }
     }
 
 }

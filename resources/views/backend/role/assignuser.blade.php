@@ -33,7 +33,7 @@ opened
                     </div>
                     <div class="col-md-10">
                         <p class="form-control-static">
-                            <select name="user" id="user" class="form-control @error('user') is-invalid @enderror">
+                            <select name="user" id="user" class="form-control select2 @error('user') is-invalid @enderror">
                                 <option value="">--Select User--</option>
                                 @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->email }})</option>
@@ -51,7 +51,7 @@ opened
                     </div>
                     <div class="col-md-10">
                         <p class="form-control-static">
-                            <select name="role" id="role" class="form-control @error('role') is-invalid @enderror">
+                            <select name="role" id="role" class="form-control select2 @error('role') is-invalid @enderror">
                                 <option value="">--Select Role--</option>
                                 @foreach ($roles as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }} ({{ $user->email }})</option>

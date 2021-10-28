@@ -2,34 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Checkout;
+use App\Models\OrderedProduct;
 use Illuminate\Http\Request;
 
-class CheckoutController extends Controller
+class OrderedProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-    }
-
     public function index()
     {
-        if (getcarts()->count() == 0) {
-            session()->forget('subtotal');
-            session()->forget('discount');
-            session()->forget('coupon_name');
-            session()->forget('shipping');
-            session()->forget('grand_total');
-            return redirect('');
-        }
-        $profile = 1;
-        // $profile = Profile::with('user')->where('user_id', auth()->id())->first();
-        return view('frontend.pages.checkout',compact('profile'));
+        //
     }
 
     /**
@@ -56,10 +41,10 @@ class CheckoutController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Checkout  $checkout
+     * @param  \App\Models\OrderedProduct  $orderedProduct
      * @return \Illuminate\Http\Response
      */
-    public function show(Checkout $checkout)
+    public function show(OrderedProduct $orderedProduct)
     {
         //
     }
@@ -67,10 +52,10 @@ class CheckoutController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Checkout  $checkout
+     * @param  \App\Models\OrderedProduct  $orderedProduct
      * @return \Illuminate\Http\Response
      */
-    public function edit(Checkout $checkout)
+    public function edit(OrderedProduct $orderedProduct)
     {
         //
     }
@@ -79,10 +64,10 @@ class CheckoutController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Checkout  $checkout
+     * @param  \App\Models\OrderedProduct  $orderedProduct
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Checkout $checkout)
+    public function update(Request $request, OrderedProduct $orderedProduct)
     {
         //
     }
@@ -90,10 +75,10 @@ class CheckoutController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Checkout  $checkout
+     * @param  \App\Models\OrderedProduct  $orderedProduct
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Checkout $checkout)
+    public function destroy(OrderedProduct $orderedProduct)
     {
         //
     }
