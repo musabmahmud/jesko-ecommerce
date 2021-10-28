@@ -2,6 +2,7 @@
 @section('product')
 opened
 @endsection
+@can('gallery edit')
 @section('content')
 <div class="page-content">
     <div class="container-fluid">
@@ -53,3 +54,14 @@ opened
     </div><!--.container-fluid-->
 </div><!--.page-content-->
 @endsection
+
+@else
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="section-header">
+            <div class="alert alert-warning">You Don't Have Allow To Access This</div>
+        </div>
+    </div>
+</div>
+@endcan
+

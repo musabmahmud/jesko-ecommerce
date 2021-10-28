@@ -2,6 +2,7 @@
 @section('role')
     opened
 @endsection
+@can('assign user')
 @section('content')
     <div class="page-content">
         <div class="container-fluid">
@@ -103,3 +104,13 @@
         });
     </script>
 @endsection
+
+@else
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="section-header">
+            <div class="alert alert-warning">You Don't Have Permissions To Access This</div>
+        </div>
+    </div>
+</div>
+@endcan

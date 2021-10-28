@@ -2,6 +2,7 @@
 @section('color')
     opened
 @endsection
+@can('color view')
 @section('content')
     <div class="page-content">
         <div class="container-fluid">
@@ -96,3 +97,13 @@
         });
     </script>
 @endsection
+
+@else
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="section-header">
+            <div class="alert alert-warning">You Don't Have Allow To Access This</div>
+        </div>
+    </div>
+</div>
+@endcan
