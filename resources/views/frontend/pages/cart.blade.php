@@ -147,7 +147,7 @@
                                         <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                                     </div>
                                     <h5>Total products <span>${{$subtotal}}</span></h5>
-                                    <h5>Shipping Cost<span>${{$shipping = 3}}</span></h5>
+                                    <h5>Shipping Cost<span>${{$shipping = 100}}</span></h5>
                                     @isset($coupon)
                                         <h5>Discount {{$coupon->coupon_percentage}}%<span>- ${{$discount = $coupon->coupon_percentage * $subtotal/100}}</span></h5>
                                     @endisset
@@ -163,6 +163,7 @@
                                     session()->put('subtotal',$subtotal);
                                     session()->put('discount',$discount);
                                     session()->put('grand_total',$total);
+                                    session()->put('shipping', $shipping);
                                 @endphp
                             </div>
                         </div>

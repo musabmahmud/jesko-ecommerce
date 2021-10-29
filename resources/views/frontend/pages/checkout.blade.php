@@ -20,81 +20,93 @@
     <!-- breadcrumb-area end -->
 
 
+    <form action="{{route('checkout.store')}}" method="POST">
+        @csrf
+        <input type="hidden" name="user_id" value="{{ auth()->user()->id}}"/>
     <!-- checkout area start -->
     <div class="checkout-area pt-100px pb-100px">
         <div class="container">
             <div class="row">
+                <div class="col-md-12">
+                    @if (session('success'))
+                        <div class="alert bg-success text-white">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                </div>
                 <div class="col-lg-7">
                     <div class="billing-info-wrap">
                         <h3>Billing Details</h3>
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
-                                    <label>First Name</label>
-                                    <input type="text" />
+                                    <label>Name</label>
+                                    <input type="text" value="{{ auth()->user()->name ?? '' }}" name="name" id="name"/>
+                                    <p>
+                                        @error('name')
+                                            <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
+                                        @enderror
+                                    </p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
-                                    <label>Last Name</label>
-                                    <input type="text" />
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="billing-info mb-4">
-                                    <label>Company Name</label>
-                                    <input type="text" />
+                                    <label>Email</label>
+                                    <input type="email" value="{{ auth()->user()->email ?? '' }}" name="email" id="email"/>
+                                    <p>
+                                        @error('email')
+                                            <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
+                                        @enderror
+                                    </p>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="billing-select mb-4">
                                     <label>Country</label>
                                     <select>
-                                        <option>Select a country</option>
-                                        <option>Azerbaijan</option>
-                                        <option>Bahamas</option>
-                                        <option>Bahrain</option>
                                         <option>Bangladesh</option>
-                                        <option>Barbados</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="billing-info mb-4">
-                                    <label>Street Address</label>
-                                    <input class="billing-address" placeholder="House number and street name"
-                                        type="text" />
-                                    <input placeholder="Apartment, suite, unit etc." type="text" />
+                                    <label>Town / City</label>
+                                    <input type="text" name="city" value="{{ $billing_details->city ?? '' }}" id="city"/>
+                                    <p>
+                                        @error('city')
+                                            <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
+                                        @enderror
+                                    </p>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="billing-info mb-4">
-                                    <label>Town / City</label>
-                                    <input type="text" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-info mb-4">
-                                    <label>State / County</label>
-                                    <input type="text" />
+                                    <label>Street Address</label>
+                                    <input class="billing-address" placeholder="House number and street name"  type="text" name="address" id="address" value="{{ $billing_details->address ?? '' }}"/>
+                                    <p>
+                                        @error('address')
+                                            <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
+                                        @enderror
+                                    </p>
+                                    <input placeholder="Flat Number and Floor Number etc." type="text" name="apartment" value="{{ $billing_details->apartment ?? '' }}"/>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Postcode / ZIP</label>
-                                    <input type="text" />
+                                    <input type="text" name="zipcode" value="{{ $billing_details->zipcode ?? '' }}" id="zipcode"/>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <div class="billing-info mb-4">
                                     <label>Phone</label>
-                                    <input type="text" />
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="billing-info mb-4">
-                                    <label>Email Address</label>
-                                    <input type="text" />
+                                    <input type="text" name="mobile_no" id="mobile_no" value="{{ $billing_details->mobile_no ?? '' }}"/>
+                                    <p>
+                                        @error('mobile_no')
+                                            <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
+                                        @enderror
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +116,7 @@
                             <div class="additional-info">
                                 <label>Order notes</label>
                                 <textarea placeholder="Notes about your order, e.g. special notes for delivery. "
-                                    name="message"></textarea>
+                                    name="order_note">{{ $billing_details->order_note ?? '' }}</textarea>
                             </div>
                         </div>
                         
@@ -123,22 +135,34 @@
                                 </div>
                                 <div class="your-order-middle">
                                     <ul>
-                                        <li><span class="order-middle-left">Product Name X 1</span> <span
-                                                class="order-price">$100 </span></li>
-                                        <li><span class="order-middle-left">Product Name X 1</span> <span
-                                                class="order-price">$100 </span></li>
+                                        @foreach (getCarts() as $cartItem)
+                                            <li><span class="order-middle-left">{{$cartItem->product->product_name}} X {{$cartItem->quantity}}</span> <span
+                                            class="order-price">${{getPrice($cartItem) * $cartItem->quantity}} </span></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="your-order-bottom">
+                                    <ul>
+                                        <li class="order-total">Sub Total</li>
+                                        <li>${{session('subtotal')}}</li>
                                     </ul>
                                 </div>
                                 <div class="your-order-bottom">
                                     <ul>
                                         <li class="your-order-shipping">Shipping</li>
-                                        <li>Free shipping</li>
+                                        <li>${{session('shipping')}}</li>
+                                    </ul>
+                                </div>
+                                <div class="your-order-bottom">
+                                    <ul>
+                                        <li class="your-order-shipping">Discount</li>
+                                        <li>-${{session('discount')}}</li>
                                     </ul>
                                 </div>
                                 <div class="your-order-total">
                                     <ul>
                                         <li class="order-total">Total</li>
-                                        <li>$100</li>
+                                        <li>${{session('grand_total')}}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -183,10 +207,14 @@
                                             </div>
                                             <div id="my-account-3" class="panel-collapse collapse"
                                                 data-bs-parent="#faq">
-
                                                 <div class="panel-body">
-                                                    <p>Please send a check to Store Name, Store Street, Store Town,
-                                                        Store State / County, Store Postcode.</p>
+                                                    <p><input type="radio" id="payment_method" value="cash on delivery" name="payment_method">
+                                                    </p>
+                                                    <p>
+                                                        @error('payment_method')
+                                                            <div class='alert text-warning'>{{$message}}<span class="text-white">*</span></div>
+                                                        @enderror
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,7 +223,7 @@
                             </div>
                         </div>
                         <div class="Place-order mt-25">
-                            <a class="btn-hover" href="#">Place Order</a>
+                            <button type="submit" class="btn-hover d-block">Place Order</button>
                         </div>
                     </div>
                 </div>
@@ -203,4 +231,5 @@
         </div>
     </div>
     <!-- checkout area end -->
+    </form>
 @endsection

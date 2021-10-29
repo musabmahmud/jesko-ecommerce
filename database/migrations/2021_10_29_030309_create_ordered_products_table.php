@@ -18,7 +18,7 @@ class CreateOrderedProductsTable extends Migration
             $table->foreignId('billing_amount_id');
             $table->integer('product_id');
             $table->integer('color_id');
-            $table->integer('size');
+            $table->string('size');
             $table->integer('quantity');
             $table->timestamps();
             $table->softDeletes();
