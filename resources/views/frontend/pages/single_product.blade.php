@@ -75,7 +75,7 @@
                                 @if (collect($pdtDetail->attribute)->min('offer_price') < collect($pdtDetail->attribute)->min('price'))
                                     <s>${{ collect($pdtDetail->attribute)->min('price') }}</s> ${{ collect($pdtDetail->attribute)->min('offer_price') }}
                                 @else
-                                    {{ collect($pdtDetail->attribute)->min('price') }}
+                                    ${{ collect($pdtDetail->attribute)->min('price') }}
                                 @endif
                             </span>
                         </div>

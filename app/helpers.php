@@ -3,6 +3,8 @@
 use App\Models\Cart;
 use App\Models\Coupon;
 use App\Models\Attribute;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Cookie;
 
 
@@ -44,4 +46,7 @@ function coupon()
     return Coupon::orderby('created_at', 'desc')->first();
 }
 
+function getCatCount($id){
+    return Product::where("category_id", $id)->count();
+}
 ?>

@@ -12,6 +12,7 @@ use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,8 @@ Route::resource('cart', CartController::class);
 //checkout
 Route::resource('checkout', CheckoutController::class);
 
+//shop
+Route::resource('shop', ShopController::class);
 
 //backend
 Route::get('/dashboard',[BackendController::class,'backend'])->name('backend');

@@ -186,7 +186,7 @@
                                                 @if (collect($allProduct->attribute)->min('offer_price')< collect($allProduct->attribute)->min('price'))
                                                 <span class="new">${{collect($allProduct->attribute)->min('offer_price')}}</span><span class="old">${{collect($allProduct->attribute)->min('price')}}</span>
                                                 @else
-                                                {{collect($allProduct->attribute)->min('price')}}
+                                                    ${{collect($allProduct->attribute)->min('price')}}
                                                 @endif
                                             </span>
                                         </div>
@@ -237,7 +237,7 @@
                                                 @if (collect($latest->attribute)->min('offer_price')< collect($latest->attribute)->min('price'))
                                                 <span class="new">${{collect($latest->attribute)->min('offer_price')}}</span><span class="old">${{collect($latest->attribute)->min('price')}}</span>
                                                 @else
-                                                {{collect($latest->attribute)->min('price')}}
+                                                 ${{collect($latest->attribute)->min('price')}}
                                                 @endif
                                             </span>
                                         </div>
@@ -288,7 +288,7 @@
                                                 @if (collect($man->attribute)->min('offer_price')< collect($man->attribute)->min('price'))
                                                 <span class="new">${{collect($man->attribute)->min('offer_price')}}</span><span class="old">${{collect($man->attribute)->min('price')}}</span>
                                                 @else
-                                                {{collect($man->attribute)->min('price')}}
+                                                    ${{collect($man->attribute)->min('price')}}
                                                 @endif
                                             </span>
                                         </div>
@@ -339,7 +339,7 @@
                                                 @if (collect($woman->attribute)->min('offer_price')< collect($woman->attribute)->min('price'))
                                                 <span class="new">${{collect($woman->attribute)->min('offer_price')}}</span><span class="old">${{collect($woman->attribute)->min('price')}}</span>
                                                 @else
-                                                {{collect($woman->attribute)->min('price')}}
+                                                    ${{collect($woman->attribute)->min('price')}}
                                                 @endif
                                             </span>
                                         </div>
@@ -390,7 +390,7 @@
                                                 @if (collect($kid->attribute)->min('offer_price')< collect($kid->attribute)->min('price'))
                                                 <span class="new">${{collect($kid->attribute)->min('offer_price')}}</span><span class="old">${{collect($kid->attribute)->min('price')}}</span>
                                                 @else
-                                                {{collect($kid->attribute)->min('price')}}
+                                                ${{collect($kid->attribute)->min('price')}}
                                                 @endif
                                             </span>
                                         </div>
@@ -528,7 +528,7 @@
                                                     @if (collect($topArrival->attribute)->min('offer_price')< collect($topArrival->attribute)->min('price'))
                                                     <span class="new">${{collect($topArrival->attribute)->min('offer_price')}}</span><span class="old">${{collect($topArrival->attribute)->min('price')}}</span>
                                                     @else
-                                                    {{collect($topArrival->attribute)->min('price')}}
+                                                    ${{collect($topArrival->attribute)->min('price')}}
                                                     @endif
                                                 </span>
                                             </div>
@@ -590,7 +590,7 @@
                                                     @if (collect($newProduct->attribute)->min('offer_price')< collect($newProduct->attribute)->min('price'))
                                                     <span class="new">${{collect($newProduct->attribute)->min('offer_price')}}</span><span class="old">${{collect($newProduct->attribute)->min('price')}}</span>
                                                     @else
-                                                    {{collect($newProduct->attribute)->min('price')}}
+                                                    ${{collect($newProduct->attribute)->min('price')}}
                                                     @endif
                                                 </span>
                                             </div>
@@ -652,7 +652,7 @@
                                                     @if (collect($bestSell->attribute)->min('offer_price')< collect($bestSell->attribute)->min('price'))
                                                     <span class="new">${{collect($bestSell->attribute)->min('offer_price')}}</span><span class="old">${{collect($bestSell->attribute)->min('price')}}</span>
                                                     @else
-                                                    {{collect($bestSell->attribute)->min('price')}}
+                                                    ${{collect($bestSell->attribute)->min('price')}}
                                                     @endif
                                                 </span>
                                             </div>

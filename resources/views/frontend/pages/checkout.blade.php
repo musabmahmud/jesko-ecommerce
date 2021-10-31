@@ -176,7 +176,7 @@
                                                         aria-expanded="true">Direct bank transfer</a>
                                                 </h4>
                                             </div>
-                                            <div id="my-account-1" class="panel-collapse collapse show"
+                                            <div id="my-account-1" class="panel-collapse collapse"
                                                 data-bs-parent="#faq">
 
                                                 <div class="panel-body">
@@ -205,10 +205,11 @@
                                                 <h4 class="panel-title"><a data-bs-toggle="collapse"
                                                         href="#my-account-3">Cash on delivery</a></h4>
                                             </div>
-                                            <div id="my-account-3" class="panel-collapse collapse"
+                                            <div id="my-account-3" class="panel-collapse collapse show"
                                                 data-bs-parent="#faq">
                                                 <div class="panel-body">
                                                     <p><input type="radio" id="payment_method" value="cash on delivery" name="payment_method">
+                                                        <label for="payment_method">cash on delivery</label>
                                                     </p>
                                                     <p>
                                                         @error('payment_method')

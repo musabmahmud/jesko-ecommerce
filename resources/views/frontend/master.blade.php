@@ -55,68 +55,15 @@ use Illuminate\Support\Facades\Cookie;?>
                 <div class="row">
                     <div class="col-auto align-self-center">
                         <div class="header-logo">
-                            <a href="index.html"><img src="{{ asset('frontend')}}/images/logo/logo.png" alt="Site Logo" /></a>
+                            <a href="{{url('/')}}"><img src="{{ asset('frontend')}}/images/logo/logo.png" alt="Site Logo" /></a>
                         </div>
                     </div>
                     <div class="col align-self-center d-none d-lg-block">
                         <div class="main-menu">
                             <ul>
-                                <li><a href="#">Home</a>
+                                <li><a href="{{url('/')}}">Home</a>
                                 </li>
-                                <li class="dropdown position-static"><a href="#">Shop <i
-                                            class="pe-7s-angle-down"></i></a>
-                                    <ul class="mega-menu d-block">
-                                        <li class="d-flex">
-                                            <ul class="d-block">
-
-                                                <li class="title"><a href="#">Shop Page</a></li>
-                                                <li><a href="shop-4-column.html">Shop 4 Column</a></li>
-                                                <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
-                                            </ul>
-                                            <ul class="d-block">
-                                                <li class="title"><a href="#">product Details Page</a></li>
-                                                <li><a href="single-product.html">Product Single</a></li>
-                                                <li><a href="single-product-variable.html">Product Variable</a></li>
-                                            </ul>
-                                           
-                                            <ul class="d-block">
-                                                <li class="title"><a href="#">Other Shop Pages</a></li>
-                                                <li><a href="cart.html">Cart Page</a></li>
-                                                <li><a href="checkout.html">Checkout Page</a></li>
-                                                <li><a href="wishlist.html">Wishlist Page</a></li>
-                                                <li><a href="my-account.html">Account Page</a></li>
-                                                <li><a href="login.html">Login & Register Page</a></li>
-                                            </ul>
-                                            <ul class="d-block">
-                                                <li class="title"><a href="#">Pages</a></li>
-                                                <li><a href="404.html">404 Page</a></li>
-                                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                                <li><a href="faq.html">Faq Page</a></li>
-                                                <li><a href="coming-soon.html">Coming Soon Page</a></li>
-
-                                            </ul>
-                                        </li>
-                                        <li>
-
-                                            <ul class="menu-banner w-100">
-                                                <li>
-                                                    <a class="p-0" href="shop-left-sidebar.html"><img
-                                                            class="img-responsive w-100"
-                                                            src="{{ asset('frontend')}}/images/banner/7.jpg" alt=""></a>
-                                                </li>
-                                                <li>
-                                                    <a class="p-0" href="shop-left-sidebar.html"><img
-                                                            class="img-responsive w-100"
-                                                            src="{{ asset('frontend')}}/images/banner/8.jpg" alt=""></a>
-                                                </li>
-                                                <li>
-                                                    <a class="p-0" href="shop-left-sidebar.html"><img
-                                                            class="img-responsive w-100"
-                                                            src="{{ asset('frontend')}}/images/banner/9.jpg" alt=""></a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                <li class="dropdown position-static"><a href="{{route('shop.index')}}">Shop</a>
                                 </li>
                                 <li class="dropdown "><a href="#">Blogs <i class="pe-7s-angle-down"></i></a>
                                     <ul class="sub-menu">

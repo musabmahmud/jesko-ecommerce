@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BillingDetail;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Color;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class BillingDetailController extends Controller
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,11 @@ class BillingDetailController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::OrderBy('category_name', 'Asc')->get();
+        $brands = Brand::OrderBy('brand_name', 'Asc')->get();
+        $colors = Color::OrderBy('color_name', 'Asc')->get();
+        $products = Product::OrderBy('product_name', 'Asc')->get();
+        return view('frontend.pages.shop',compact('categories','brands','products','colors'));
     }
 
     /**
@@ -41,10 +48,10 @@ class BillingDetailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BillingDetail  $billingDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(BillingDetail $billingDetail)
+    public function show($id)
     {
         //
     }
@@ -52,10 +59,10 @@ class BillingDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BillingDetail  $billingDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(BillingDetail $billingDetail)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +71,10 @@ class BillingDetailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BillingDetail  $billingDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BillingDetail $billingDetail)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +82,10 @@ class BillingDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BillingDetail  $billingDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BillingDetail $billingDetail)
+    public function destroy($id)
     {
         //
     }

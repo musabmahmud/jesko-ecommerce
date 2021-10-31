@@ -223,7 +223,11 @@
 	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-cog"></span>Settings</a>
 	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-question-sign"></span>Help</a>
 	                            <div class="dropdown-divider"></div>
-	                            <a class="dropdown-item" href="#"><span class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
+	                            <a class="dropdown-item d-inline" onclick="event.preventDefault(); document.getElementById('form-logout').submit();">
+								<span class="font-icon glyphicon glyphicon-log-out"></span>Logout</a>
+								<form id="form-logout" action="{{ route('logout') }}" method="post">
+									@csrf
+								</form>
 	                        </div>
 	                    </div>
 	
